@@ -1,12 +1,9 @@
-package com.ezgroceries.shoppinglist.groceries;
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+package com.ezgroceries.shoppinglist.resources;
 
 import java.util.List;
 import java.util.UUID;
 
-public class CocktailResource {
+public class Cocktail {
     private UUID cocktailId;
     private String name;
     private String glass; //todo > create glass-class ;-)
@@ -14,7 +11,7 @@ public class CocktailResource {
     private String image;
     private List<String> ingredients;
 
-    public CocktailResource(UUID cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
+    public Cocktail(UUID cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
         this.cocktailId = cocktailId;
         this.name = name;
         this.glass = glass;

@@ -1,12 +1,12 @@
 package com.ezgroceries.shoppinglist.web;
 
-import com.ezgroceries.shoppinglist.groceries.CocktailResource;
+import com.ezgroceries.shoppinglist.resources.Cocktail;
+import com.ezgroceries.shoppinglist.services.CocktailService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -14,20 +14,22 @@ import java.util.UUID;
 @RestController
 public class CocktailController {
 
+    private CocktailService cocktailService;
+
     @GetMapping(value = "/cocktails", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CocktailResource> get(@RequestParam String search) {
+    public List<Cocktail> get(@RequestParam String search) {
         return getDummyResources();
     }
 
-    private List<CocktailResource> getDummyResources() {
+    private List<Cocktail> getDummyResources() {
         return Arrays.asList(
-                new CocktailResource(
+                new Cocktail(
                         UUID.fromString("23b3d85a-3928-41c0-a533-6538a71e17c4"), "Margerita",
                         "Cocktail glass",
                         "Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten..",
                         "https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg",
                         Arrays.asList("Tequila", "Triple sec", "Lime juice", "Salt")),
-                new CocktailResource(
+                new Cocktail(
                         UUID.fromString("d615ec78-fe93-467b-8d26-5d26d8eab073"), "Blue Margerita",
                         "Cocktail glass",
                         "Rub rim of cocktail glass with lime juice. Dip rim in coarse salt..",
