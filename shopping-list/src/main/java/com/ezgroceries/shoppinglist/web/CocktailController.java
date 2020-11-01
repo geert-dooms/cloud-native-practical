@@ -1,7 +1,6 @@
 package com.ezgroceries.shoppinglist.web;
 
 import com.ezgroceries.shoppinglist.resources.Cocktail;
-import com.ezgroceries.shoppinglist.services.CocktailService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +13,8 @@ import java.util.UUID;
 @RestController
 public class CocktailController {
 
-    private CocktailService cocktailService;
-
     @GetMapping(value = "/cocktails", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Cocktail> get(@RequestParam String search) {
+    public List<Cocktail> get() {
         return getDummyResources();
     }
 

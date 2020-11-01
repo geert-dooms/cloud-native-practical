@@ -4,20 +4,25 @@ import com.ezgroceries.shoppinglist.resources.ShoppingList;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ShoppingListService {
-    private List<ShoppingList> shoppingListList;
+
+    private List<ShoppingList> shoppingLists;
 
     public ShoppingListService(List<ShoppingList> shoppingLists) {
-        this.shoppingListList = shoppingLists;
+        this.shoppingLists = shoppingLists;
     }
 
-/*    public List<ShoppingList> getAllGifts() {
-        return this.shoppingListList;
-    }*/
+    public ShoppingList create(String name) {
+        ShoppingList shoppingList = new ShoppingList(UUID.randomUUID(), name); //todo > is using new ok here?
+        this.shoppingLists.add(shoppingList);
+        return shoppingList;
+    }
 
-    public shoppingList createShoppingList(String name) {
-        this.shoppingListList.add(name);
+    public List<UUID> addCocktails(List<UUID> cocktails) {
+        cocktails.forEach();
+        return cocktails;
     }
 }
