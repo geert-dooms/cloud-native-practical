@@ -16,7 +16,9 @@ public class ShoppingListService {
     }
 
     public ShoppingList create(String name) {
-        ShoppingList shoppingList = new ShoppingList(UUID.randomUUID(), name);  //todo > is using new ok here?
+        ShoppingList shoppingList = new ShoppingList(UUID.randomUUID(), name);
+        //todo > is using new ok here?
+        //todo > should randomUUID be inside the ShoppingList class? (or in a separate 'shoppinglistcreator' class?)
         this.shoppingLists.add(shoppingList);
         return shoppingList;
     }
