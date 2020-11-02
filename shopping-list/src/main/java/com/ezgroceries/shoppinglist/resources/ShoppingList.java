@@ -1,5 +1,8 @@
 package com.ezgroceries.shoppinglist.resources;
 
+import com.ezgroceries.shoppinglist.web.CocktailController;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -7,11 +10,12 @@ public class ShoppingList {
 
     private UUID shoppingListId;
     private String name;
-    private List<Cocktail> cocktails;
+    private List<CocktailReference> cocktails;//todo -> map? only UUID or cocktail pojo?
 
     public ShoppingList(UUID shoppingListId, String name) {
         this.shoppingListId = shoppingListId;
         this.name = name;
+        this.cocktails = new ArrayList<>();
     }
 
     public UUID getShoppingListId() {
@@ -30,8 +34,15 @@ public class ShoppingList {
         this.name = name;
     }
 
-    public UUID addCocktail(Cocktail cocktail) {
-        cocktails.add(cocktail);
-        return (cocktail.getCocktailId());
+    public List<CocktailReference> getCocktails() {
+        return cocktails;
+    }
+
+    public void setCocktails(List<CocktailReference>cocktails) {
+        this.cocktails = cocktails;
+    }
+
+    public void addCocktails(List<CocktailReference> cocktails) {
+        this.cocktails.addAll(cocktails);
     }
 }

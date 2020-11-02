@@ -16,13 +16,21 @@ public class ShoppingListService {
     }
 
     public ShoppingList create(String name) {
-        ShoppingList shoppingList = new ShoppingList(UUID.randomUUID(), name); //todo > is using new ok here?
+        ShoppingList shoppingList = new ShoppingList(UUID.randomUUID(), name);  //todo > is using new ok here?
         this.shoppingLists.add(shoppingList);
         return shoppingList;
     }
 
-    public List<UUID> addCocktails(List<UUID> cocktails) {
-        cocktails.forEach();
-        return cocktails;
+    public List<ShoppingList> getAllShoppingLists() {
+        return(shoppingLists);
+    }
+
+    public ShoppingList findShoppingListById(UUID shoppingListId) {
+        for (ShoppingList shoppinglist : shoppingLists) {
+            if (shoppinglist.getShoppingListId().equals(shoppingListId)) {
+                return shoppinglist;
+            }
+        }
+        return null;
     }
 }
