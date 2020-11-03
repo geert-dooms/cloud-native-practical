@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ShoppingListService {
+public class ShoppingListService { //todo > use interface instead
 
     private List<ShoppingList> shoppingLists;
 
