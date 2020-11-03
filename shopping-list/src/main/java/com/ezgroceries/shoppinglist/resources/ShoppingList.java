@@ -8,13 +8,11 @@ public class ShoppingList {
 
     private UUID shoppingListId;
     private String name;
-    private List<CocktailReference> cocktails;//todo -> map? only UUID or cocktail pojo?
     private Set<String> ingredients; //todo -> ingredients class?
 
     public ShoppingList(UUID shoppingListId, String name) {
         this.shoppingListId = shoppingListId;
         this.name = name;
-        this.cocktails = new ArrayList<>();
         this.ingredients = new HashSet<>();
     }
 
@@ -34,24 +32,12 @@ public class ShoppingList {
         this.name = name;
     }
 
-    public List<CocktailReference> getCocktails() {
-        return cocktails;
-    }
-
-    public void setCocktails(List<CocktailReference>cocktails) {
-        this.cocktails = cocktails;
-    }
-
     public Set<String> getIngredients() {
         return ingredients;
     }
 
     public void setIngredients(Set<String> ingredients) {
         this.ingredients = ingredients;
-    }
-
-    public void addCocktails(List<CocktailReference> cocktails) {
-        this.cocktails.addAll(cocktails);
     }
 
     public void addIngredients(List<String> ingredients) {

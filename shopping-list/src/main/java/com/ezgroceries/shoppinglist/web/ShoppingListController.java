@@ -39,7 +39,6 @@ public class ShoppingListController {
     @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
     @ResponseStatus(HttpStatus.CREATED)
     public List<CocktailReference> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<CocktailReference> cocktailReferences) {
-        shoppingListService.findShoppingListById(shoppingListId).addCocktails(cocktailReferences);
         shoppingListService.findShoppingListById(shoppingListId).addIngredients(Arrays.asList("Tequila", "Blue Curacao", "Lime juice", "Salt","Triple Sec"));
         return cocktailReferences;
     }
