@@ -1,0 +1,7 @@
+com/ezgroceries/shoppinglist/services/ShoppingListService.class
+com/ezgroceries/shoppinglist/resources/ShoppingList.class
+com/ezgroceries/shoppinglist/resources/CocktailReference.class
+com/ezgroceries/shoppinglist/web/CocktailController.class
+com/ezgroceries/shoppinglist/web/ShoppingListController.class
+com/ezgroceries/shoppinglist/ShoppingListApplication.class
+com/ezgroceries/shoppinglist/resources/Cocktail.class
