@@ -29,20 +29,20 @@ Create a free private git account and fork this repository to start implementing
 
 ## Labs
 
-* [01 - Spring Boot Application](lab-01-spring-boot)
-* [02 - REST API](lab-02-rest-api)
-* [03 - Docker](lab-03-docker)
-* [04 - External API Integration](lab-04-external-api)
-* [05 - Persistence](lab-05-persistence)
-* [06 - JPA](lab-06-jpa)
-* [07 - OpenShift](lab-07-openshift)
-* [08 - Security](lab-08-security)
-* [09 - Hardening](lab-09-hardening)
+* [01 - Spring Boot Application](lab-readme/lab-01-spring-boot)
+* [02 - REST API](lab-readme/lab-02-rest-api)
+* [03 - Docker](lab-readme/lab-03-docker)
+* [04 - External API Integration](lab-readme/lab-04-external-api)
+* [05 - Persistence](lab-readme/lab-05-persistence)
+* [06 - JPA](lab-readme/lab-06-jpa)
+* [07 - OpenShift](lab-readme/lab-07-openshift)
+* [08 - Security](lab-readme/lab-08-security)
+* [09 - Hardening](lab-readme/lab-09-hardening)
 
 Optional:
 
-* [10 - Authentication & Authorization](lab-10-authn-authz)
-* [11 - MealDB](lab-11-mealdb)
+* [10 - Authentication & Authorization](lab-readme/lab-10-authn-authz)
+* [11 - MealDB](lab-readme/lab-11-mealdb)
 
 
 ## Tips
