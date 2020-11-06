@@ -1,10 +1,9 @@
-package com.ezgroceries.shoppinglist.web;
+package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.resources.CocktailReference;
-import com.ezgroceries.shoppinglist.resources.ShoppingList;
-import com.ezgroceries.shoppinglist.services.ShoppingListService;
+import com.ezgroceries.shoppinglist.model.CocktailReference;
+import com.ezgroceries.shoppinglist.model.ShoppingList;
+import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
