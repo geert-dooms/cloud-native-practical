@@ -19,6 +19,9 @@ public class CocktailDBResponseConverter {
     }
 
     public List<Cocktail> processSearchCocktailResponse(CocktailDBResponse cocktailDBResponse) {
+        //todo > cleaning list because it stays 'in memory' > a new search should result in a new list; alternatively,
+        //creating a new list everytime would not store in memory (?) and not allow us to add a cocktail to a shoppinglist
+        cleanCocktailList(cocktails);
         cocktailDBResponse.getDrinks().forEach(drink -> cocktails.add(convertDrinkToCocktail(drink)));
         return cocktails;
     }
@@ -53,5 +56,10 @@ public class CocktailDBResponseConverter {
                             drink.getStrInstructions(),
                             drink.getStrDrinkThumb(),
                             ingredients);
+    }
+
+    private void cleanCocktailList(List<Cocktail> cocktails) {
+        cocktails.clear();
+        return;
     }
 }
