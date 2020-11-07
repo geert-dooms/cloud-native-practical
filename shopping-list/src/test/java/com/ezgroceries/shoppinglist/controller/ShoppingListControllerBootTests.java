@@ -34,7 +34,6 @@ public class ShoppingListControllerBootTests {
     private ShoppingListService shoppingListService;
 
     @Test
-    @Disabled
     public void getShoppingList() throws Exception {
 
         //arrange
@@ -50,9 +49,9 @@ public class ShoppingListControllerBootTests {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("shoppingListId").value(shoppingListId.toString()))
-                .andExpect(jsonPath("name").value("MisterG"))
-                .andExpect(jsonPath("ingredients").value(Arrays.asList("Alcohol")));
+                .andExpect(jsonPath("$..shoppingListId").value(shoppingListId.toString()))
+                .andExpect(jsonPath("$..name").value("MisterG"))
+                .andExpect(jsonPath("$..ingredients", hasItem(Arrays.asList("Alcohol"))));
 
         //verify
         verify(shoppingListService, times(1)).findShoppingListById((any(UUID.class)));
@@ -60,7 +59,6 @@ public class ShoppingListControllerBootTests {
     }
 
     @Test
-    @Disabled
     public void getAllShoppingLists() throws Exception {
 
         //arrange
@@ -87,7 +85,6 @@ public class ShoppingListControllerBootTests {
     }
 
     @Test
-    @Disabled
     public void createShoppingList() throws Exception {
 
         //arrange
@@ -114,16 +111,19 @@ public class ShoppingListControllerBootTests {
     }
 
     @Test
-    @Disabled
     public void addCocktailsToShoppingList() throws Exception {
 
         //arrange
         UUID shoppingListId = UUID.randomUUID();
+        String testName = "MisterG";
+        ShoppingList testShoppingList = new ShoppingList(shoppingListId, testName);
+
         UUID cocktailId = UUID.randomUUID();
         CocktailReference testCocktailReference = new CocktailReference(cocktailId);
         List<CocktailReference> testCocktailReferences = Arrays.asList(testCocktailReference);
 
-        //given(shoppingListService.findShoppingListById(any(UUID.class)).addIngredients(anyList()));
+        given(shoppingListService.findShoppingListById(any(UUID.class)))
+                .willReturn(testShoppingList);
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/{shoppingListId}/cocktails",shoppingListId)
@@ -148,13 +148,5 @@ public class ShoppingListControllerBootTests {
             throw new RuntimeException(e);
         }
     }
-
-/*    @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
-    @ResponseStatus(HttpStatus.CREATED)
-    public List<CocktailReference> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<CocktailReference> cocktailReferences) {
-        shoppingListService.findShoppingListById(shoppingListId).addCocktails(cocktailReferences);
-        shoppingListService.findShoppingListById(shoppingListId).addIngredients(Arrays.asList("Tequila", "Blue Curacao", "Lime juice", "Salt","Triple Sec"));
-        return cocktailReferences;
-    }*/
 
 }
