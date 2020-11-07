@@ -1,5 +1,6 @@
 /Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/src/main/java/com/ezgroceries/shoppinglist/controller/CocktailController.java
 /Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/src/main/java/com/ezgroceries/shoppinglist/service/CocktailService.java
+/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/src/main/java/com/ezgroceries/shoppinglist/ShoppingListApplicationHsqldb.java
 /Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/src/main/java/com/ezgroceries/shoppinglist/controller/ShoppingListController.java
 /Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/src/main/java/com/ezgroceries/shoppinglist/model/CocktailDBResponse.java
 /Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/src/main/java/com/ezgroceries/shoppinglist/model/Cocktail.java
