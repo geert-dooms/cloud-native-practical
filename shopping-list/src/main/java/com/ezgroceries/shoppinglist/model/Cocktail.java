@@ -1,7 +1,8 @@
-package com.ezgroceries.shoppinglist.resources;
+package com.ezgroceries.shoppinglist.model;
 
 import java.util.List;
 import java.util.UUID;
+
 
 public class Cocktail {
     private UUID cocktailId;

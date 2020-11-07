@@ -1,6 +1,6 @@
-package com.ezgroceries.shoppinglist.services;
+package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.resources.ShoppingList;
+import com.ezgroceries.shoppinglist.model.ShoppingList;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

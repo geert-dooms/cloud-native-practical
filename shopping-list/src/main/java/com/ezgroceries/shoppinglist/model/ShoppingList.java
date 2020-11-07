@@ -1,6 +1,4 @@
-package com.ezgroceries.shoppinglist.resources;
-
-import com.ezgroceries.shoppinglist.web.CocktailController;
+package com.ezgroceries.shoppinglist.model;
 
 import java.util.*;
 

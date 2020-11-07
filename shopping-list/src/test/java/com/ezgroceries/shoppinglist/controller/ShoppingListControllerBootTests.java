@@ -1,24 +1,17 @@
-package com.ezgroceries.shoppinglist.web;
+package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.resources.CocktailReference;
-import com.ezgroceries.shoppinglist.resources.ShoppingList;
-import com.ezgroceries.shoppinglist.services.ShoppingListService;
+import com.ezgroceries.shoppinglist.model.CocktailReference;
+import com.ezgroceries.shoppinglist.model.ShoppingList;
+import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -41,7 +34,6 @@ public class ShoppingListControllerBootTests {
     private ShoppingListService shoppingListService;
 
     @Test
-    @Disabled
     public void getShoppingList() throws Exception {
 
         //arrange
@@ -57,9 +49,9 @@ public class ShoppingListControllerBootTests {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("shoppingListId").value(shoppingListId.toString()))
-                .andExpect(jsonPath("name").value("MisterG"))
-                .andExpect(jsonPath("ingredients").value(Arrays.asList("Alcohol")));
+                .andExpect(jsonPath("$..shoppingListId").value(shoppingListId.toString()))
+                .andExpect(jsonPath("$..name").value("MisterG"))
+                .andExpect(jsonPath("$..ingredients", hasItem(Arrays.asList("Alcohol"))));
 
         //verify
         verify(shoppingListService, times(1)).findShoppingListById((any(UUID.class)));
@@ -119,16 +111,19 @@ public class ShoppingListControllerBootTests {
     }
 
     @Test
-    @Disabled
     public void addCocktailsToShoppingList() throws Exception {
 
         //arrange
         UUID shoppingListId = UUID.randomUUID();
+        String testName = "MisterG";
+        ShoppingList testShoppingList = new ShoppingList(shoppingListId, testName);
+
         UUID cocktailId = UUID.randomUUID();
         CocktailReference testCocktailReference = new CocktailReference(cocktailId);
         List<CocktailReference> testCocktailReferences = Arrays.asList(testCocktailReference);
 
-        //given(shoppingListService.findShoppingListById(any(UUID.class)).addIngredients(anyList()));
+        given(shoppingListService.findShoppingListById(any(UUID.class)))
+                .willReturn(testShoppingList);
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/{shoppingListId}/cocktails",shoppingListId)
@@ -153,13 +148,5 @@ public class ShoppingListControllerBootTests {
             throw new RuntimeException(e);
         }
     }
-
-/*    @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
-    @ResponseStatus(HttpStatus.CREATED)
-    public List<CocktailReference> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<CocktailReference> cocktailReferences) {
-        shoppingListService.findShoppingListById(shoppingListId).addCocktails(cocktailReferences);
-        shoppingListService.findShoppingListById(shoppingListId).addIngredients(Arrays.asList("Tequila", "Blue Curacao", "Lime juice", "Salt","Triple Sec"));
-        return cocktailReferences;
-    }*/
 
 }
