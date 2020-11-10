@@ -1,10 +1,11 @@
-package com.ezgroceries.shoppinglist.model;
+package com.ezgroceries.shoppinglist.dto;
 
 import java.util.UUID;
 
     /**
     * This class was created to solve issues with serialisation with UUID for some of the POST calls in ShoppingListController
     */
+
 public class CocktailReference {
     private UUID cocktailId;
 

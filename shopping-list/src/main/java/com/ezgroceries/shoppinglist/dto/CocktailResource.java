@@ -1,19 +1,21 @@
-package com.ezgroceries.shoppinglist.model;
+package com.ezgroceries.shoppinglist.dto;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
-public class Cocktail {
+public class CocktailResource {
     private UUID cocktailId;
+    private String drinkId;
     private String name;
-    private String glass; //todo > create glass-class ;-)
+    private String glass;
     private String instructions;
     private String image;
-    private List<String> ingredients;
+    private Set<String> ingredients;
 
-    public Cocktail(UUID cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
+    public CocktailResource(UUID cocktailId, String drinkId, String name, String glass, String instructions, String image, Set<String> ingredients) {
         this.cocktailId = cocktailId;
+        this.drinkId = drinkId;
         this.name = name;
         this.glass = glass;
         this.instructions = instructions;
@@ -23,6 +25,18 @@ public class Cocktail {
 
     public UUID getCocktailId() {
         return cocktailId;
+    }
+
+    public void setCocktailId(UUID cocktailId) {
+        this.cocktailId = cocktailId;
+    }
+
+    public String getDrinkId() {
+        return drinkId;
+    }
+
+    public void setDrinkId(String drinkId) {
+        this.drinkId = drinkId;
     }
 
     public String getName() {
@@ -57,11 +71,11 @@ public class Cocktail {
         this.image = image;
     }
 
-    public List<String> getIngredients() {
+    public Set<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<String> ingredients) {
+    public void setIngredients(Set<String> ingredients) {
         this.ingredients = ingredients;
     }
 }

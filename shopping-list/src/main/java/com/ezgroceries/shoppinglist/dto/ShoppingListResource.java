@@ -1,17 +1,23 @@
-package com.ezgroceries.shoppinglist.model;
+package com.ezgroceries.shoppinglist.dto;
 
 import java.util.*;
 
-public class ShoppingList {
+public class ShoppingListResource {
 
     private UUID shoppingListId;
     private String name;
-    private Set<String> ingredients; //todo -> ingredients class?
+    private Set<String> ingredients; //todo -> should this still be here?
 
-    public ShoppingList(UUID shoppingListId, String name) {
+    public ShoppingListResource(UUID shoppingListId, String name) {
         this.shoppingListId = shoppingListId;
         this.name = name;
         this.ingredients = new HashSet<>();
+    }
+
+    public ShoppingListResource(UUID shoppingListId, String name, Set<String> ingredients) {
+        this.shoppingListId = shoppingListId;
+        this.name = name;
+        this.ingredients = ingredients;
     }
 
     public UUID getShoppingListId() {
@@ -38,7 +44,4 @@ public class ShoppingList {
         this.ingredients = ingredients;
     }
 
-    public void addIngredients(List<String> ingredients) {
-        this.ingredients.addAll(ingredients);
-    }
 }
