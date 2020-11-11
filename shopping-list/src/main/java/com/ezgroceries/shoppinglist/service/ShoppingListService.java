@@ -50,6 +50,7 @@ public class ShoppingListService { //todo > use interface instead
         if (shoppingList.isPresent()) {
             cocktailService.findCocktailsById(cocktailReferences).forEach(cocktail ->
                 shoppingList.get().addCocktail(cocktail));
+            shoppingListRepository.save(shoppingList.get());
 
         }
         return cocktailReferences;
