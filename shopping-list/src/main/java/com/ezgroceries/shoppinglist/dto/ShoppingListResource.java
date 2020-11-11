@@ -6,7 +6,7 @@ public class ShoppingListResource {
 
     private UUID shoppingListId;
     private String name;
-    private Set<String> ingredients; //todo -> should this still be here?
+    private Set<String> ingredients; //todo -> best place to include ingredients to the outside world?
 
     public ShoppingListResource(UUID shoppingListId, String name) {
         this.shoppingListId = shoppingListId;

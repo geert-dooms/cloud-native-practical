@@ -2,14 +2,12 @@ package com.ezgroceries.shoppinglist.converter;
 
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.model.ShoppingList;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
-@NoArgsConstructor
 public class ShoppingListMapper {
 
     public static ShoppingList DtoToEntity(ShoppingListResource shoppingListResource) {
@@ -21,6 +19,7 @@ public class ShoppingListMapper {
 
         Set<String> ingredients = new HashSet<>();
 
+        //todo - best way to fetch ingredients?
         shoppingList.getCocktails().forEach(cocktail -> ingredients.addAll(cocktail.getIngredients()));
 
         return new ShoppingListResource(shoppingList.getShoppingListId(),

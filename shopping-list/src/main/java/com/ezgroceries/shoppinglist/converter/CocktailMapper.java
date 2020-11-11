@@ -2,11 +2,9 @@ package com.ezgroceries.shoppinglist.converter;
 
 import com.ezgroceries.shoppinglist.dto.CocktailResource;
 import com.ezgroceries.shoppinglist.model.Cocktail;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@NoArgsConstructor
 public class CocktailMapper {
 
     public static Cocktail DtoToEntity(CocktailResource cocktailResource) {

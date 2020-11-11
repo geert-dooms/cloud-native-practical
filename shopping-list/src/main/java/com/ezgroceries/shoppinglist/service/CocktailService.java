@@ -26,19 +26,27 @@ public class CocktailService {
 
     public List<CocktailResource> searchCocktails(String search) {
 
+        //perform new query to TheCocktailDB.com
         CocktailDBResponse cocktailDBResponse = cocktailDBClient.searchCocktails(search);
+
+
         List<CocktailResource> cocktailResources = new ArrayList<>();
 
         for (Drink drinks : cocktailDBResponse.getDrinks()) {
+            //convert drink from TheCocktailDB to Cocktailresource
+            CocktailResource cocktailResource = drinkConverter.convertDrinkToCocktail(drinks);
+
+
+            //check cocktail database for this cocktail. if it exists > update with data from API, otherwise insert into cocktail table
             Optional<Cocktail> cocktail = cocktailRepository.findByDrinkId(drinks.getIdDrink());
             if (cocktail.isPresent()) {
-                //todo should the existing cocktail in DB not be updated with the new fetch from cocktailDB to have the most recent data?
-                cocktailResources.add(CocktailMapper.EntitytoDto(cocktail.get()));
+                cocktailResource.setCocktailId(cocktail.get().getCocktailId());
+                //todo > also update database with most recent details from thecocktaildb?
             } else {
-                CocktailResource cocktailResource = drinkConverter.convertDrinkToCocktail(drinks);
-                cocktailResources.add(cocktailResource);
                 cocktailRepository.save(CocktailMapper.DtoToEntity(cocktailResource));
             }
+
+            cocktailResources.add(cocktailResource);
         }
         return cocktailResources;
     }

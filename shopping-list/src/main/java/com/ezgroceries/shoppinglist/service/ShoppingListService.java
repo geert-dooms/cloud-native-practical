@@ -15,10 +15,9 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class ShoppingListService { //todo > use interface instead
+public class ShoppingListService { //todo > use interface instead?
 
     private final ShoppingListRepository shoppingListRepository;
-    private final ShoppingListMapper shoppingListMapper;
     private final CocktailService cocktailService;
 
     public ShoppingListResource create(String name) {
@@ -46,12 +45,10 @@ public class ShoppingListService { //todo > use interface instead
 
     public List<CocktailReference> addCocktails(UUID shoppingListId, List<CocktailReference> cocktailReferences) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
-        System.out.println("shoppinglist" + shoppingList);
         if (shoppingList.isPresent()) {
             cocktailService.findCocktailsById(cocktailReferences).forEach(cocktail ->
                 shoppingList.get().addCocktail(cocktail));
             shoppingListRepository.save(shoppingList.get());
-
         }
         return cocktailReferences;
     }

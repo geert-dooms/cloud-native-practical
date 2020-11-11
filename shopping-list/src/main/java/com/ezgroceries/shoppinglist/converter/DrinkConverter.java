@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-@RequiredArgsConstructor
 public class DrinkConverter {
 
     //todo -> refactor (cleaner; is there a better way to handle these 15 strings?)
@@ -34,7 +33,6 @@ public class DrinkConverter {
 
         ingredients.removeIf(Objects::isNull);
 
-        //todo use of new needed?
         //todo should UUID be generated here? or in entity?
         return new CocktailResource(UUID.randomUUID(),
                 drink.getIdDrink(),
