@@ -61,7 +61,7 @@ To enable Spring to detect Feign clients we need to enable this through an annot
 public class ShoppingListApplication
 ```
 
-### Search cocktails
+### Search cocktailResources
 
 Study the response of the search cocktail API:
 
@@ -139,7 +139,7 @@ After this implementation following example request to our API should be up and 
 
 Request:
 ```
-GET localhost:8080/cocktails?search=russian
+GET localhost:8080/cocktailResources?search=russian
 ```
 
 Response:

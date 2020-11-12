@@ -143,7 +143,7 @@ o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version 
 
 After successful start-up, use your SQL Client to have a look at the flyway_schema_history table. Make sure you understand it's role, have a look at the Flyway documentation if necessary.
 
-To implement our Shopping List functionality in the next lab, we'll first need the entire schema. This just involves a many-to-many relationship between cocktails and shopping lists. 
+To implement our Shopping List functionality in the next lab, we'll first need the entire schema. This just involves a many-to-many relationship between cocktailResources and shopping lists. 
 
 Add appropriate Flyway migration scripts to end up with this schema, find out how to best define the foreign key relationships in postgres:
 

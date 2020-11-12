@@ -14,11 +14,11 @@ Other technical decisions that were taken during the design include:
 
 ## Cocktail API
 
-### Search cocktails
+### Search cocktailResources
 
 Request
 ```
-GET http://localhost:8080/cocktails?search=Russian
+GET http://localhost:8080/cocktailResources?search=Russian
 ```
 Response
 ```
@@ -57,7 +57,7 @@ Response
 Implementation example:
 ```
 @RestController
-@RequestMapping(value = "/cocktails", produces = "application/json")
+@RequestMapping(value = "/cocktailResources", produces = "application/json")
 public class CocktailController {
 
     @GetMapping
@@ -108,7 +108,7 @@ Response:
 
 Request:
 ```
-POST http://localhost:8080/shopping-lists/97c8e5bd-5353-426e-b57b-69eb2260ace3/cocktails
+POST http://localhost:8080/shopping-lists/97c8e5bd-5353-426e-b57b-69eb2260ace3/cocktailResources
 
 [
   {
@@ -133,7 +133,7 @@ Response, only needs to contain the cocktailId attributes
 ### Get a Shopping List
 
 This will provide the main (currently still very simple) functionality of our API, 
-it will return a distinct set of ingredients derived from all the cocktails that have been added to this shopping list.
+it will return a distinct set of ingredients derived from all the cocktailResources that have been added to this shopping list.
 
 Reminder that currently we only return some dummy generated data, just focus on getting the contract right.
 

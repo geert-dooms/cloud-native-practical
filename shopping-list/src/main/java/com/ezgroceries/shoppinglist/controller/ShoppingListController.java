@@ -1,44 +1,41 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.model.CocktailReference;
-import com.ezgroceries.shoppinglist.model.ShoppingList;
+import com.ezgroceries.shoppinglist.dto.CocktailReference;
+import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.service.ShoppingListService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 public class ShoppingListController {
 
-    private ShoppingListService shoppingListService;
-
-    public ShoppingListController(ShoppingListService shoppingListService) {
-        this.shoppingListService = shoppingListService;
-    }
+    private final ShoppingListService shoppingListService;
 
     @GetMapping(value = "/shopping-lists/{shoppingListId}")
-    public ShoppingList getShoppingList(@PathVariable UUID shoppingListId) {
-        return shoppingListService.findShoppingListById(shoppingListId);
+    public ShoppingListResource getShoppingList(@PathVariable UUID shoppingListId) {
+        return shoppingListService.getShoppingList(shoppingListId);
     }
 
+    //todo > return set instead of list?
     @GetMapping(value = "/shopping-lists")
-    public List<ShoppingList> getAllShoppingLists() {
+    public List<ShoppingListResource> getAllShoppingLists() {
         return shoppingListService.getAllShoppingLists();
     }
 
     @PostMapping(value = "/shopping-lists")
     @ResponseStatus(HttpStatus.CREATED)
-    public ShoppingList createShoppingList(@RequestBody String name) {
+    public ShoppingListResource createShoppingList(@RequestBody String name) {
         return shoppingListService.create(name);
     }
 
     @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
     @ResponseStatus(HttpStatus.CREATED)
     public List<CocktailReference> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<CocktailReference> cocktailReferences) {
-        shoppingListService.findShoppingListById(shoppingListId).addIngredients(Arrays.asList("Tequila", "Blue Curacao", "Lime juice", "Salt","Triple Sec"));
-        return cocktailReferences;
+        return shoppingListService.addCocktails(shoppingListId, cocktailReferences);
     }
 }

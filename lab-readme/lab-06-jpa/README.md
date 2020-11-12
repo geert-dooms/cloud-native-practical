@@ -81,9 +81,9 @@ public class ShoppingListService {
 
 A very important change to our application involves the on-the-fly persisting of all Cocktails returned from the search, we don't want to store all the attributes, we just want to assign a UUID for every unique Cocktail and persist this on our database.
 
-### Search cocktails
+### Search cocktailResources
 
-Refactor our current implementation, map all the returned cocktails from the CocktailDBClient using their idDrink attributes to our CocktailEntity instances, if we don't have it in our database, persist it.
+Refactor our current implementation, map all the returned cocktailResources from the CocktailDBClient using their idDrink attributes to our CocktailEntity instances, if we don't have it in our database, persist it.
 
 There are a myriad of possibilities to implement this, focus on just getting a working example. Some inspiration of a possible implementation on a new CocktailService service layer component:
 
@@ -126,7 +126,7 @@ Refactor the ShoppingListController to have an autowired reference to the Shoppi
 
 ### Add Cocktails to Shopping List
 
-Replace the dummy resources and provide a real persisted implementation. This will include a service layer that will take care of linking cocktails with a specific shopping list.
+Replace the dummy resources and provide a real persisted implementation. This will include a service layer that will take care of linking cocktailResources with a specific shopping list.
 
 ### Get a Shopping List
 

@@ -1,17 +1,33 @@
 package com.ezgroceries.shoppinglist.model;
 
-import java.util.*;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
+@Entity
+@Table(name = "shopping_list")
 public class ShoppingList {
 
+    @Id
+    @Column(name = "id")
     private UUID shoppingListId;
+
+    @Column(name = "name")
     private String name;
-    private Set<String> ingredients; //todo -> ingredients class?
+
+    @ManyToMany
+    @JoinTable(name = "cocktail_shopping_list",
+            joinColumns = @JoinColumn(name = "shopping_list_id"),
+            inverseJoinColumns = @JoinColumn(name = "cocktail_id"))
+    private Set<Cocktail> cocktails = new HashSet<>();
+
+    public ShoppingList() {
+    }
 
     public ShoppingList(UUID shoppingListId, String name) {
         this.shoppingListId = shoppingListId;
         this.name = name;
-        this.ingredients = new HashSet<>();
     }
 
     public UUID getShoppingListId() {
@@ -30,15 +46,11 @@ public class ShoppingList {
         this.name = name;
     }
 
-    public Set<String> getIngredients() {
-        return ingredients;
+    public void addCocktail(Cocktail cocktail) {
+        cocktails.add(cocktail);
     }
 
-    public void setIngredients(Set<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public void addIngredients(List<String> ingredients) {
-        this.ingredients.addAll(ingredients);
+    public Set<Cocktail> getCocktails() {
+        return cocktails;
     }
 }
