@@ -44,4 +44,13 @@ public class ShoppingListResource {
         this.ingredients = ingredients;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingListResource that = (ShoppingListResource) o;
+        return shoppingListId.equals(that.shoppingListId) &&
+                name.equals(that.name) &&
+                Objects.equals(ingredients, that.ingredients);
+    }
 }

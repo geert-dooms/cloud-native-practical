@@ -34,7 +34,7 @@ public class ShoppingListService { //todo > use interface instead?
         return shoppingListResources;
     }
 
-    public ShoppingListResource findShoppingListById(UUID shoppingListId) {
+    public ShoppingListResource getShoppingList(UUID shoppingListId) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
         if (shoppingList.isPresent()) {
             return ShoppingListMapper.EntityToDto(shoppingList.get());

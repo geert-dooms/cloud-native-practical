@@ -4,7 +4,6 @@ import com.ezgroceries.shoppinglist.dto.CocktailReference;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -39,7 +38,7 @@ public class ShoppingListControllerBootTests {
         Set<String> ingredients = new HashSet<>(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"));
         ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", ingredients);
 
-        given(shoppingListService.findShoppingListById(any(UUID.class)))
+        given(shoppingListService.getShoppingList(any(UUID.class)))
                 .willReturn(testShoppingList);
 
         //act and assert
@@ -52,7 +51,7 @@ public class ShoppingListControllerBootTests {
                 .andExpect(jsonPath("$..ingredients", hasItem(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"))));
 
         //verify
-        verify(shoppingListService, times(1)).findShoppingListById((any(UUID.class)));
+        verify(shoppingListService, times(1)).getShoppingList((any(UUID.class)));
 
     }
 

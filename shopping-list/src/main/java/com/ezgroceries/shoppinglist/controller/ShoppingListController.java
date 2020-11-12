@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ public class ShoppingListController {
 
     @GetMapping(value = "/shopping-lists/{shoppingListId}")
     public ShoppingListResource getShoppingList(@PathVariable UUID shoppingListId) {
-        return shoppingListService.findShoppingListById(shoppingListId);
+        return shoppingListService.getShoppingList(shoppingListId);
     }
 
     //todo > return set instead of list?
