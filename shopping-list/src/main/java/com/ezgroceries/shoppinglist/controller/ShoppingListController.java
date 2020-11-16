@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.dto.CocktailReference;
+import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import lombok.RequiredArgsConstructor;
@@ -29,13 +30,13 @@ public class ShoppingListController {
 
     @PostMapping(value = "/shopping-lists")
     @ResponseStatus(HttpStatus.CREATED)
-    public ShoppingListResource createShoppingList(@RequestBody String name) {
-        return shoppingListService.create(name);
+    public ShoppingListResource createShoppingList(@RequestBody NewShoppingListRequest newShoppingListRequest) {
+        return shoppingListService.create(newShoppingListRequest);
     }
 
     @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<CocktailReference> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<CocktailReference> cocktailReferences) {
-        return shoppingListService.addCocktails(shoppingListId, cocktailReferences);
+    public List<AddCocktailRequest> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<AddCocktailRequest> addCocktailRequests) {
+        return shoppingListService.addCocktails(shoppingListId, addCocktailRequests);
     }
 }

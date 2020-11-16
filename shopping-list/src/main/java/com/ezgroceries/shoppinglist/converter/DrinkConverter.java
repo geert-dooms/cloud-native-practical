@@ -1,9 +1,7 @@
 package com.ezgroceries.shoppinglist.converter;
 
 import com.ezgroceries.shoppinglist.dto.CocktailResource;
-import com.ezgroceries.shoppinglist.dto.CocktailDBResponse;
 import com.ezgroceries.shoppinglist.model.Drink;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -33,7 +31,7 @@ public class DrinkConverter {
 
         ingredients.removeIf(Objects::isNull);
 
-        //todo should UUID be generated here? or in entity?
+        //todo should UUID be generated here? or in entity (e.g. with autogeneration)   ? - same remark for shoppinglist
         return new CocktailResource(UUID.randomUUID(),
                 drink.getIdDrink(),
                 drink.getStrDrink(),

@@ -61,7 +61,7 @@ public class CocktailControllerBootTests {
                 .andExpect(jsonPath("$..instructions").value("Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten.."))
                 .andExpect(jsonPath("$..image").value("https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg"))
                 .andExpect(jsonPath("$..ingredients", hasItem(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"))));
-        //todo > match op set werkt niet
+        //todo > match op set werkt niet (met value) - of gaat dit wel met .equals?
 
         //verify
         verify(cocktailService, times(1)).searchCocktails(anyString());

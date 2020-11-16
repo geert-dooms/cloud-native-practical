@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.dto;
+package com.ezgroceries.shoppinglist.client;
 
 import com.ezgroceries.shoppinglist.model.Drink;
 
