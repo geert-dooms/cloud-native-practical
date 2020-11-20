@@ -26,7 +26,7 @@ public class CocktailService {
 
     public List<CocktailResource> searchCocktails(String search) {
 
-        //perform new query to TheCocktailDB.com
+        //perform new query to external API TheCocktailDB.com
         CocktailDBResponse cocktailDBResponse = cocktailDBClient.searchCocktails(search);
 
 
