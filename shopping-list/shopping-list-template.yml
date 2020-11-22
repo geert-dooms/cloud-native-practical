@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-list
+  labels:
+    app: shopping-list
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopping-list
+  template:
+    metadata:
+      labels:
+        app: shopping-list
+    spec:
+      containers:
+      - name: shopping-list
+        image: shopping-list:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        lifecycle:
+          preStop:
+            exec:
+              # SIGTERM triggers a quick exit; gracefully terminate instead
+              command: ["kill", "-SIGINT", "`pidof java`"]
