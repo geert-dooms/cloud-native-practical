@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.dto.CocktailReference;
+import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.model.Cocktail;
 import com.ezgroceries.shoppinglist.model.ShoppingList;
@@ -92,6 +93,8 @@ public class ShoppingListServiceBootTests {
     public void createShoppingListTest() {
 
         //prepare
+        NewShoppingListRequest newShoppingListRequest = new NewShoppingListRequest("MisterG");
+
         UUID shoppingListId = UUID.randomUUID();
         ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG");
 
@@ -100,7 +103,7 @@ public class ShoppingListServiceBootTests {
         when(shoppingListRepository.save(testShoppingList)).thenReturn(testShoppingList);
 
         //execute
-        ShoppingListResource shoppingListResource = shoppingListService.create("MisterG");
+        ShoppingListResource shoppingListResource = shoppingListService.create(newShoppingListRequest);
 
         //verify
         //todo only testing on name because service will random generate uuid upon creation > other way?
@@ -129,23 +132,23 @@ public class ShoppingListServiceBootTests {
         testShoppingList.addCocktail(cocktail2);
 
 
-        List<CocktailReference> testCocktailReferences = new ArrayList<>();
-        testCocktailReferences.add(new CocktailReference(cocktailId));
-        testCocktailReferences.add(new CocktailReference(cocktailId2));
+        List<AddCocktailRequest> testAddCocktailRequests = new ArrayList<>();
+        testAddCocktailRequests.add(new AddCocktailRequest(cocktailId));
+        testAddCocktailRequests.add(new AddCocktailRequest(cocktailId2));
 
         when(shoppingListRepository.findById(shoppingListId)).thenReturn(Optional.of(testShoppingList));
-        when(cocktailService.findCocktailsById(testCocktailReferences)).thenReturn(testCocktails);
+        when(cocktailService.findCocktailsById(testAddCocktailRequests)).thenReturn(testCocktails);
         when(shoppingListRepository.save(testShoppingList)).thenReturn(testShoppingList);
 
         //execute
-        List<CocktailReference> cocktailReferences = shoppingListService.addCocktails(shoppingListId, testCocktailReferences);
+        List<AddCocktailRequest> addCocktailRequests = shoppingListService.addCocktails(shoppingListId, testAddCocktailRequests);
 
         //assert
 
-        assertEquals(testCocktailReferences, cocktailReferences);
+        assertEquals(testAddCocktailRequests, addCocktailRequests);
 
         verify(shoppingListRepository, times(1)).findById(shoppingListId);
-        verify(cocktailService, times(1)).findCocktailsById(testCocktailReferences);
+        verify(cocktailService, times(1)).findCocktailsById(testAddCocktailRequests);
         verify(shoppingListRepository, times(1)).save(testShoppingList);
 
 

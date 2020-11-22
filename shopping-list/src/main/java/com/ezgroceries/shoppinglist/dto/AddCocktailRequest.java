@@ -8,14 +8,14 @@ import java.util.UUID;
     */
 
 
-public class CocktailReference {
+public class AddCocktailRequest {
     private UUID cocktailId;
 
-    public CocktailReference() {
+    public AddCocktailRequest() {
 
     }
 
-    public CocktailReference(UUID cocktailId) {
+    public AddCocktailRequest(UUID cocktailId) {
         this.cocktailId = cocktailId;
     }
 
@@ -31,7 +31,7 @@ public class CocktailReference {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CocktailReference that = (CocktailReference) o;
+        AddCocktailRequest that = (AddCocktailRequest) o;
         return Objects.equals(cocktailId, that.cocktailId);
     }
     }

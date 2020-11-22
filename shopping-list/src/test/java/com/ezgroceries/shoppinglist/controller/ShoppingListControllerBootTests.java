@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.dto.CocktailReference;
+import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,10 +87,10 @@ public class ShoppingListControllerBootTests {
         //arrange
         UUID shoppingListId = UUID.randomUUID();
         String testName = "MisterG";
-        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, testName);
+        ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, testName);
 
-        given(shoppingListService.create(anyString()))
-                .willReturn(testShoppingList);
+        given(shoppingListService.create(any(NewShoppingListRequest.class)))
+                .willReturn(testShoppingListResource);
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/")
@@ -102,7 +103,7 @@ public class ShoppingListControllerBootTests {
                 .andExpect(jsonPath("name").value("MisterG"));
 
         //verify
-        verify(shoppingListService, times(1)).create(anyString());
+        verify(shoppingListService, times(1)).create(any(NewShoppingListRequest.class));
 
     }
 
@@ -113,23 +114,23 @@ public class ShoppingListControllerBootTests {
         UUID shoppingListId = UUID.randomUUID();
 
         UUID cocktailId = UUID.randomUUID();
-        CocktailReference testCocktailReference = new CocktailReference(cocktailId);
-        List<CocktailReference> testCocktailReferences = Arrays.asList(testCocktailReference);
+        AddCocktailRequest testAddCocktailRequest = new AddCocktailRequest(cocktailId);
+        List<AddCocktailRequest> testAddCocktailRequests = Arrays.asList(testAddCocktailRequest);
 
-        given(shoppingListService.addCocktails(any(UUID.class), testCocktailReferences))
-                .willReturn(testCocktailReferences);
+        given(shoppingListService.addCocktails(any(UUID.class), testAddCocktailRequests))
+                .willReturn(testAddCocktailRequests);
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/{shoppingListId}/cocktails",shoppingListId)
-                .content(asJsonString(testCocktailReferences))
+                .content(asJsonString(testAddCocktailRequests))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$..cocktailId", hasItem(Arrays.asList(testCocktailReference))));
+                .andExpect(jsonPath("$..cocktailId", hasItem(Arrays.asList(testAddCocktailRequest))));
 
         //verify
-        verify(shoppingListService, times(1)).addCocktails(any(UUID.class), testCocktailReferences);
+        verify(shoppingListService, times(1)).addCocktails(any(UUID.class), testAddCocktailRequests);
 
     }
 

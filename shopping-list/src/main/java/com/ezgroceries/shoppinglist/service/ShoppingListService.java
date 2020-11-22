@@ -1,7 +1,8 @@
 package com.ezgroceries.shoppinglist.service;
 
 import com.ezgroceries.shoppinglist.converter.ShoppingListMapper;
-import com.ezgroceries.shoppinglist.dto.CocktailReference;
+import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.model.ShoppingList;
 import com.ezgroceries.shoppinglist.repository.ShoppingListRepository;
@@ -20,12 +21,9 @@ public class ShoppingListService { //todo > use interface instead?
     private final ShoppingListRepository shoppingListRepository;
     private final CocktailService cocktailService;
 
-    public ShoppingListResource create(String name) {
-        ShoppingListResource shoppingListResource = new ShoppingListResource(UUID.randomUUID(), name);
-        //todo > is using new ok here?
-        //todo > should randomUUID be inside the ShoppingList class? (or in a separate 'shoppinglistcreator' class?)
-        shoppingListRepository.save(ShoppingListMapper.DtoToEntity(shoppingListResource));
-        return shoppingListResource;
+    public ShoppingListResource create(NewShoppingListRequest newShoppingListRequest) {
+        ShoppingList shoppingList = shoppingListRepository.save(ShoppingListMapper.DtoToEntity(newShoppingListRequest));
+        return ShoppingListMapper.EntityToDto(shoppingList);
     }
 
     public List<ShoppingListResource> getAllShoppingLists() {
@@ -43,13 +41,13 @@ public class ShoppingListService { //todo > use interface instead?
         }
     }
 
-    public List<CocktailReference> addCocktails(UUID shoppingListId, List<CocktailReference> cocktailReferences) {
+    public List<AddCocktailRequest> addCocktails(UUID shoppingListId, List<AddCocktailRequest> addCocktailRequests) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
         if (shoppingList.isPresent()) {
-            cocktailService.findCocktailsById(cocktailReferences).forEach(cocktail ->
+            cocktailService.findCocktailsById(addCocktailRequests).forEach(cocktail ->
                 shoppingList.get().addCocktail(cocktail));
             shoppingListRepository.save(shoppingList.get());
         }
-        return cocktailReferences;
+        return addCocktailRequests;
     }
 }
