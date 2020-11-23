@@ -37,7 +37,6 @@ public class CocktailService {
             //convert drink from TheCocktailDB to Cocktailresource
             CocktailResource cocktailResource = drinkConverter.convertDrinkToCocktail(drinks);
 
-
             //check cocktail database for this cocktail. if it exists > update with data from API, otherwise insert into cocktail table
             Optional<Cocktail> cocktail = cocktailRepository.findByDrinkId(drinks.getIdDrink());
             if (cocktail.isPresent()) {
