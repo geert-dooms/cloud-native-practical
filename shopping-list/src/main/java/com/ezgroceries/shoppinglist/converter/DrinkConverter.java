@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.converter;
 
 import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.model.Cocktail;
 import com.ezgroceries.shoppinglist.model.Drink;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import java.util.*;
 public class DrinkConverter {
 
     //todo -> refactor (cleaner; is there a better way to handle these 15 strings?)
+    //todo > use cocktail instead of cocktail resource?
     public CocktailResource convertDrinkToCocktail (Drink drink) {
 
         Set<String> ingredients = new HashSet<>(Arrays.asList(
@@ -38,5 +40,31 @@ public class DrinkConverter {
                 drink.getStrGlass(),
                 drink.getStrInstructions(),
                 drink.getStrDrinkThumb(), ingredients);
+    }
+
+    public Drink convertCocktailToDrink(Cocktail cocktail) {
+
+        String[] ingredients = cocktail.getIngredients().toArray(new String[15]);
+
+        return new Drink(cocktail.getDrinkId(),
+                         cocktail.getName(),
+                         cocktail.getGlass(),
+                         cocktail.getInstructions(),
+                         cocktail.getImage(),
+                         ingredients[0],
+                         ingredients[1],
+                         ingredients[2],
+                         ingredients[3],
+                         ingredients[4],
+                         ingredients[5],
+                         ingredients[0],
+                         ingredients[7],
+                         ingredients[8],
+                         ingredients[9],
+                         ingredients[10],
+                         ingredients[11],
+                         ingredients[12],
+                         ingredients[13],
+                         ingredients[14]);
     }
 }
