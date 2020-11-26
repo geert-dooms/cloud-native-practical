@@ -11,5 +11,5 @@ RUN mvn -B package -DskipTests
 FROM azul/zulu-openjdk-alpine:11-jre
 WORKDIR /app
 COPY --from=builder /source/target/shopping-list-*.jar /app/application.jar
-ENTRYPOINT [ "java", "-jar", "/app/application.jar"]
-#ENTRYPOINT [ "java", "-jar", "/app/application.jar", "--spring.profiles.active=hsqldb" ]
+#ENTRYPOINT [ "java", "-jar", "/app/application.jar"]
+ENTRYPOINT [ "java", "-jar", "/app/application.jar", "--spring.profiles.active=hsqldb" ]
