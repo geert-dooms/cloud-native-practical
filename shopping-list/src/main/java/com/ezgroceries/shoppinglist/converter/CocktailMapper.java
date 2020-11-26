@@ -11,16 +11,19 @@ public class CocktailMapper {
         return new Cocktail(cocktailResource.getCocktailId(),
                             cocktailResource.getDrinkId(),
                             cocktailResource.getName(),
-                            cocktailResource.getIngredients());
+                            cocktailResource.getIngredients(),
+                            cocktailResource.getGlass(),
+                            cocktailResource.getInstructions(),
+                            cocktailResource.getImage());
     }
 
     public static CocktailResource EntitytoDto(Cocktail cocktail) {
         return new CocktailResource(cocktail.getCocktailId(),
                                     cocktail.getDrinkId(),
                                     cocktail.getName(),
-                                    null,
-                                    null,
-                                    null,
+                                    cocktail.getGlass(),
+                                    cocktail.getInstructions(),
+                                    cocktail.getImage(),
                                     cocktail.getIngredients());
     }
 

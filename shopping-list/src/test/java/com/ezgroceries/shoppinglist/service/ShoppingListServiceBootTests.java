@@ -37,13 +37,13 @@ public class ShoppingListServiceBootTests {
 
         UUID shoppingListId = UUID.randomUUID();
         ShoppingList shoppingList = new ShoppingList(shoppingListId, "MisterG");
-        Cocktail cocktail = new Cocktail(UUID.randomUUID(), "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")));
+        Cocktail cocktail = new Cocktail(UUID.randomUUID(), "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")), "coupe", "shaken not stirred","image.jpg" );
         shoppingList.addCocktail(cocktail);
         testShoppingLists.add(shoppingList);
 
         UUID shoppingList2Id = UUID.randomUUID();
         ShoppingList shoppingList2 = new ShoppingList(shoppingList2Id, "Jos");
-        Cocktail cocktail2 = new Cocktail(UUID.randomUUID(), "654321", "White Russian", new HashSet<>(Arrays.asList("Vodka")));
+        Cocktail cocktail2 = new Cocktail(UUID.randomUUID(), "654321", "White Russian", new HashSet<>(Arrays.asList("Vodka")),"tumbler" ,"creamy" ,"dude.jpg" );
         shoppingList2.addCocktail(cocktail2);
         testShoppingLists.add(shoppingList2);
 
@@ -71,7 +71,7 @@ public class ShoppingListServiceBootTests {
 
         UUID shoppingListId = UUID.randomUUID();
         ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG");
-        Cocktail cocktail = new Cocktail(UUID.randomUUID(), "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")));
+        Cocktail cocktail = new Cocktail(UUID.randomUUID(), "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")),"coupe", "shaken not stirred","image.jpg");
         testShoppingList.addCocktail(cocktail);
 
         //prepare shoppinglistresource
@@ -119,8 +119,8 @@ public class ShoppingListServiceBootTests {
         //prepare
         UUID cocktailId = UUID.randomUUID();
         UUID cocktailId2 = UUID.randomUUID();
-        Cocktail cocktail = new Cocktail(cocktailId, "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")));
-        Cocktail cocktail2 = new Cocktail(cocktailId2, "654321", "White Russian", new HashSet<>(Arrays.asList("Vodka")));
+        Cocktail cocktail = new Cocktail(cocktailId, "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")),"coupe", "shaken not stirred","image.jpg");
+        Cocktail cocktail2 = new Cocktail(cocktailId2, "654321", "White Russian", new HashSet<>(Arrays.asList("Vodka")),"tumbler" ,"creamy" ,"dude.jpg" );
 
         List<Cocktail> testCocktails = new ArrayList<>();
         testCocktails.add(cocktail);

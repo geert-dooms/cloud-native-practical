@@ -25,6 +25,14 @@ public class Cocktail {
     @Convert(converter = StringSetConverter.class)
     private Set<String> ingredients;
 
+    @Column(name = "glass")
+    private String glass;
+
+    @Column(name = "instructions")
+    private String instructions;
+
+    @Column(name = "image")
+    private String image;
 
     @ManyToMany(mappedBy = "cocktails")
     private Set<ShoppingList> shoppingLists = new HashSet<ShoppingList>();
@@ -33,11 +41,14 @@ public class Cocktail {
 
     }
 
-    public Cocktail(UUID cocktailId, String drinkId, String name, Set<String> ingredients) {
+    public Cocktail(UUID cocktailId, String drinkId, String name, Set<String> ingredients, String glass, String instructions, String image) {
         this.cocktailId = cocktailId;
         this.drinkId = drinkId;
         this.name = name;
         this.ingredients = ingredients;
+        this.glass = glass;
+        this.instructions = instructions;
+        this.image = image;
     }
 
     public UUID getCocktailId() {
@@ -62,6 +73,30 @@ public class Cocktail {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGlass() {
+        return glass;
+    }
+
+    public void setGlass(String glass) {
+        this.glass = glass;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<String> getIngredients() {
