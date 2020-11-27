@@ -1,6 +1,5 @@
 package com.ezgroceries.shoppinglist.client;
 
-import com.ezgroceries.shoppinglist.model.Drink;
 import com.ezgroceries.shoppinglist.model.MealDb;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class MealDBResponse {
         return mealDbs;
     }
 
-    public void setDrinks(List<MealDb> drinks) {
+    public void setMeals(List<MealDb> mealDbs) {
         this.mealDbs = mealDbs;
     }
 

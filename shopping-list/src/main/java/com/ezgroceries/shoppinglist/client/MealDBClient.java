@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @FeignClient(name = "mealDBClient", url = "https://www.themealdb.com/api/json/v1/1", fallback = MealDBClientFallback.class)
 public interface MealDBClient {
 

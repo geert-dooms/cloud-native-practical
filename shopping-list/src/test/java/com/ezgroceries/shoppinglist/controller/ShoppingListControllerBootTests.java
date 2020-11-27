@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.controller;
 
 import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.dto.AddMealRequest;
 import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
 import com.ezgroceries.shoppinglist.service.ShoppingListService;
@@ -87,6 +88,7 @@ public class ShoppingListControllerBootTests {
         //arrange
         UUID shoppingListId = UUID.randomUUID();
         String testName = "MisterG";
+        NewShoppingListRequest newShoppingListRequest = new NewShoppingListRequest(testName);
         ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, testName);
 
         given(shoppingListService.create(any(NewShoppingListRequest.class)))
@@ -94,7 +96,7 @@ public class ShoppingListControllerBootTests {
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/")
-                .content(testName)
+                .content(asJsonString(newShoppingListRequest))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isCreated())
@@ -117,7 +119,7 @@ public class ShoppingListControllerBootTests {
         AddCocktailRequest testAddCocktailRequest = new AddCocktailRequest(cocktailId);
         List<AddCocktailRequest> testAddCocktailRequests = Arrays.asList(testAddCocktailRequest);
 
-        given(shoppingListService.addCocktails(any(UUID.class), testAddCocktailRequests))
+        given(shoppingListService.addCocktails(shoppingListId, testAddCocktailRequests))
                 .willReturn(testAddCocktailRequests);
 
         //act and assert
@@ -134,6 +136,32 @@ public class ShoppingListControllerBootTests {
 
     }
 
+    @Test
+    public void addMealsToShoppingList() throws Exception {
+
+        //arrange
+        UUID shoppingListId = UUID.randomUUID();
+
+        UUID mealId = UUID.randomUUID();
+        AddMealRequest testAddMealRequest = new AddMealRequest(mealId);
+        List<AddMealRequest> testAddMealRequests = Arrays.asList(testAddMealRequest);
+
+        given(shoppingListService.addMeals(any(UUID.class), testAddMealRequests))
+                .willReturn(testAddMealRequests);
+
+        //act and assert
+        mockMvc.perform(post("/shopping-lists/{shoppingListId}/meals",shoppingListId)
+                .content(asJsonString(testAddMealRequests))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$..mealId", hasItem(Arrays.asList(testAddMealRequest))));
+
+        //verify
+        verify(shoppingListService, times(1)).addMeals(any(UUID.class), testAddMealRequests);
+
+    }
     protected static String asJsonString(final Object obj) {
         try {
             final ObjectMapper mapper = new ObjectMapper();

@@ -30,7 +30,8 @@ public class MealDbConverter {
                 mealDb.getStrIngredient14(),
                 mealDb.getStrIngredient15()));
 
-        ingredients.removeIf(Objects::isNull);
+        //themealdb returns spaces for empty ingredients whereas thecocktaildb returns null;
+        ingredients.remove("");
 
         //todo should UUID be generated here? or in entity (e.g. with autogeneration)   ? - same remark for shoppinglist
         return new MealResource(UUID.randomUUID(),
