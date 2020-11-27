@@ -22,6 +22,12 @@ public class ShoppingList {
             inverseJoinColumns = @JoinColumn(name = "cocktail_id"))
     private Set<Cocktail> cocktails = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "meal_shopping_list",
+            joinColumns = @JoinColumn(name = "shopping_list_id"),
+            inverseJoinColumns = @JoinColumn(name = "meal_id"))
+    private Set<Meal> meals = new HashSet<>();
+
     public ShoppingList() {
     }
 
@@ -52,5 +58,13 @@ public class ShoppingList {
 
     public Set<Cocktail> getCocktails() {
         return cocktails;
+    }
+
+    public void addMeal(Meal meal) {
+        meals.add(meal);
+    }
+
+    public Set<Meal> getMeals() {
+        return meals;
     }
 }

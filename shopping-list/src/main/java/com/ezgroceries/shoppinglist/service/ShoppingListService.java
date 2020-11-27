@@ -2,8 +2,10 @@ package com.ezgroceries.shoppinglist.service;
 
 import com.ezgroceries.shoppinglist.converter.ShoppingListMapper;
 import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.dto.AddMealRequest;
 import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.model.Meal;
 import com.ezgroceries.shoppinglist.model.ShoppingList;
 import com.ezgroceries.shoppinglist.repository.ShoppingListRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class ShoppingListService { //todo > use interface instead?
 
     private final ShoppingListRepository shoppingListRepository;
     private final CocktailService cocktailService;
+    private final MealService mealService;
 
     public ShoppingListResource create(NewShoppingListRequest newShoppingListRequest) {
         ShoppingList shoppingList = shoppingListRepository.save(ShoppingListMapper.DtoToEntity(newShoppingListRequest));
@@ -49,5 +52,15 @@ public class ShoppingListService { //todo > use interface instead?
             shoppingListRepository.save(shoppingList.get());
         }
         return addCocktailRequests;
+    }
+
+    public List<AddMealRequest> addMeals(UUID shoppingListId, List<AddMealRequest> addMealRequests) {
+        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
+        if (shoppingList.isPresent()) {
+            mealService.findMealsById(addMealRequests).forEach(meal ->
+                    shoppingList.get().addMeal(meal));
+            shoppingListRepository.save(shoppingList.get());
+        }
+        return addMealRequests;
     }
 }

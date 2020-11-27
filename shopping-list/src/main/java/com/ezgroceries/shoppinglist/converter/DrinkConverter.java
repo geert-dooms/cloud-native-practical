@@ -14,7 +14,7 @@ public class DrinkConverter {
     //todo > use cocktail instead of cocktail resource?
     public CocktailResource convertDrinkToCocktail (Drink drink) {
 
-        Set<String> ingredients = new HashSet<>(Arrays.asList(
+            Set<String> ingredients = new HashSet<>(Arrays.asList(
                 drink.getStrIngredient1(),
                 drink.getStrIngredient2(),
                 drink.getStrIngredient3(),
@@ -31,7 +31,7 @@ public class DrinkConverter {
                 drink.getStrIngredient14(),
                 drink.getStrIngredient15()));
 
-        ingredients.removeIf(Objects::isNull);
+        ingredients.remove(null);
 
         //todo should UUID be generated here? or in entity (e.g. with autogeneration)   ? - same remark for shoppinglist
         return new CocktailResource(UUID.randomUUID(),

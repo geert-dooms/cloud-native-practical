@@ -5,7 +5,6 @@ import com.ezgroceries.shoppinglist.model.Cocktail;
 import com.ezgroceries.shoppinglist.model.Drink;
 import com.ezgroceries.shoppinglist.repository.CocktailRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @FeignClient(name = "cocktailDBClient", url = "https://www.thecocktaildb.com/api/json/v1/1", fallback = CocktailDBClientFallback.class)
 public interface CocktailDBClient {
 

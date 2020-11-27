@@ -28,6 +28,7 @@ public class ShoppingListMapper {
 
         //todo - best way to fetch ingredients?
         shoppingList.getCocktails().forEach(cocktail -> ingredients.addAll(cocktail.getIngredients()));
+        shoppingList.getMeals().forEach(meal -> ingredients.addAll(meal.getIngredients()));
 
         return new ShoppingListResource(shoppingList.getShoppingListId(),
                                         shoppingList.getName(),
