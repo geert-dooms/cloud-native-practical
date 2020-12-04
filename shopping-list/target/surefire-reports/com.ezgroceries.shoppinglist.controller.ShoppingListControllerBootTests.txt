@@ -1,11 +1,29 @@
 -------------------------------------------------------------------------------
 Test set: com.ezgroceries.shoppinglist.controller.ShoppingListControllerBootTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.041 s <<< FAILURE! - in com.ezgroceries.shoppinglist.controller.ShoppingListControllerBootTests
-com.ezgroceries.shoppinglist.controller.ShoppingListControllerBootTests  Time elapsed: 0.04 s  <<< ERROR!
-java.lang.IllegalStateException: Found multiple @SpringBootConfiguration annotated classes [Generic bean: class [com.ezgroceries.shoppinglist.ShoppingListApplication]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/ShoppingListApplication.class], Generic bean: class [com.ezgroceries.shoppinglist.ShoppingListApplicationHsqldb]; scope=; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/ShoppingListApplicationHsqldb.class]]
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 1.91 s <<< FAILURE! - in com.ezgroceries.shoppinglist.controller.ShoppingListControllerBootTests
+addCocktailsToShoppingList  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfiguration' defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/config/SecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 
-=======
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.659 s - in com.ezgroceries.shoppinglist.controller.ShoppingListControllerBootTests
->>>>>>> 3165698b83f7f801b0c5b16965ee41ef7c421216
+getShoppingList  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfiguration' defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/config/SecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+
+addMealsToShoppingList  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfiguration' defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/config/SecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+
+createShoppingList  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfiguration' defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/config/SecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+
+getAllShoppingLists  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityConfiguration' defined in file [/Users/geertdooms/Documents/Cloud Native Training/Practical case/cloud-native-practical/shopping-list/target/classes/com/ezgroceries/shoppinglist/config/SecurityConfiguration.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+

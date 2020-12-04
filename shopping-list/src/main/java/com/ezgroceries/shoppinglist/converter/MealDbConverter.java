@@ -2,7 +2,7 @@ package com.ezgroceries.shoppinglist.converter;
 
 import com.ezgroceries.shoppinglist.dto.MealResource;
 import com.ezgroceries.shoppinglist.model.Meal;
-import com.ezgroceries.shoppinglist.model.MealDb;
+import com.ezgroceries.shoppinglist.dto.MealDb;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

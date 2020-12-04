@@ -7,7 +7,7 @@ import com.ezgroceries.shoppinglist.client.MealDBResponse;
 import com.ezgroceries.shoppinglist.dto.AddMealRequest;
 import com.ezgroceries.shoppinglist.dto.MealResource;
 import com.ezgroceries.shoppinglist.model.Meal;
-import com.ezgroceries.shoppinglist.model.MealDb;
+import com.ezgroceries.shoppinglist.dto.MealDb;
 import com.ezgroceries.shoppinglist.repository.MealRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

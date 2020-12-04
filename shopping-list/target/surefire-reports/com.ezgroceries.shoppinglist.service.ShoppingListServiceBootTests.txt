@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ezgroceries.shoppinglist.service.ShoppingListServiceBootTests
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 5.733 s - in com.ezgroceries.shoppinglist.service.ShoppingListServiceBootTests

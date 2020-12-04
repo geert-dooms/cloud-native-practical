@@ -1,6 +1,6 @@
 package com.ezgroceries.shoppinglist.client;
 
-import com.ezgroceries.shoppinglist.model.MealDb;
+import com.ezgroceries.shoppinglist.dto.MealDb;
 
 import java.util.List;
 

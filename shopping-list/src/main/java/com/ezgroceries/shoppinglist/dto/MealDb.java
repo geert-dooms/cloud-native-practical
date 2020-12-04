@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.model;
+package com.ezgroceries.shoppinglist.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,13 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Drink {
+public class MealDb {
 
-        private String idDrink;
-        private String strDrink;
-        private String strGlass;
+        private String idMeal;
+        private String strMeal;
         private String strInstructions;
-        private String strDrinkThumb;
+        private String strMealThumb;
         private String strIngredient1;
         private String strIngredient2;
         private String strIngredient3;

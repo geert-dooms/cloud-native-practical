@@ -7,7 +7,7 @@ import com.ezgroceries.shoppinglist.client.CocktailDBResponse;
 import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
 import com.ezgroceries.shoppinglist.dto.CocktailResource;
 import com.ezgroceries.shoppinglist.model.Cocktail;
-import com.ezgroceries.shoppinglist.model.Drink;
+import com.ezgroceries.shoppinglist.dto.Drink;
 import com.ezgroceries.shoppinglist.repository.CocktailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -9,6 +9,8 @@ import com.ezgroceries.shoppinglist.model.Meal;
 import com.ezgroceries.shoppinglist.model.ShoppingList;
 import com.ezgroceries.shoppinglist.repository.ShoppingListRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class ShoppingListService { //todo > use interface instead?
         return shoppingListResources;
     }
 
+
     public ShoppingListResource getShoppingList(UUID shoppingListId) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
         if (shoppingList.isPresent()) {
@@ -44,6 +47,7 @@ public class ShoppingListService { //todo > use interface instead?
         }
     }
 
+    @PostAuthorize("shoppingList.username == principal.username")
     public List<AddCocktailRequest> addCocktails(UUID shoppingListId, List<AddCocktailRequest> addCocktailRequests) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
         if (shoppingList.isPresent()) {
@@ -54,6 +58,7 @@ public class ShoppingListService { //todo > use interface instead?
         return addCocktailRequests;
     }
 
+    @PostAuthorize("shoppingList.username == principal.username")
     public List<AddMealRequest> addMeals(UUID shoppingListId, List<AddMealRequest> addMealRequests) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
         if (shoppingList.isPresent()) {

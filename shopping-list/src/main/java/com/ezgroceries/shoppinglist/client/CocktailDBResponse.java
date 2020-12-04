@@ -1,7 +1,6 @@
 package com.ezgroceries.shoppinglist.client;
 
-import com.ezgroceries.shoppinglist.model.Drink;
-import lombok.AllArgsConstructor;
+import com.ezgroceries.shoppinglist.dto.Drink;
 
 import java.util.List;
 

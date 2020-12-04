@@ -2,7 +2,7 @@ package com.ezgroceries.shoppinglist.client;
 
 import com.ezgroceries.shoppinglist.converter.DrinkConverter;
 import com.ezgroceries.shoppinglist.model.Cocktail;
-import com.ezgroceries.shoppinglist.model.Drink;
+import com.ezgroceries.shoppinglist.dto.Drink;
 import com.ezgroceries.shoppinglist.repository.CocktailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;

@@ -2,7 +2,7 @@ package com.ezgroceries.shoppinglist.client;
 
 import com.ezgroceries.shoppinglist.converter.MealDbConverter;
 import com.ezgroceries.shoppinglist.model.Meal;
-import com.ezgroceries.shoppinglist.model.MealDb;
+import com.ezgroceries.shoppinglist.dto.MealDb;
 import com.ezgroceries.shoppinglist.repository.MealRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;

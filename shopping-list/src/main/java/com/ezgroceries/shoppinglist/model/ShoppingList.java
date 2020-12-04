@@ -16,6 +16,9 @@ public class ShoppingList {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "username")
+    private String username;
+
     @ManyToMany
     @JoinTable(name = "cocktail_shopping_list",
             joinColumns = @JoinColumn(name = "shopping_list_id"),
@@ -52,6 +55,13 @@ public class ShoppingList {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     public void addCocktail(Cocktail cocktail) {
         cocktails.add(cocktail);
     }
