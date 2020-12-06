@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.dto;
+package com.ezgroceries.shoppinglist.dto.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

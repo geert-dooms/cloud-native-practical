@@ -1,6 +1,6 @@
 package com.ezgroceries.shoppinglist.model;
 
-import com.ezgroceries.shoppinglist.converter.StringSetConverter;
+import com.ezgroceries.shoppinglist.util.StringSetConverter;
 
 import javax.persistence.*;
 import java.util.HashSet;

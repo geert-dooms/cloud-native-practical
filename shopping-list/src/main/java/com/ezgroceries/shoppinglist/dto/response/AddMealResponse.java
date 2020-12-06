@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.dto;
+package com.ezgroceries.shoppinglist.dto.response;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -8,15 +8,15 @@ import java.util.UUID;
 */
 
 
-public class AddMealRequest {
+public class AddMealResponse {
 
 private UUID mealId;
 
-public AddMealRequest() {
+public AddMealResponse() {
 
 }
 
-public AddMealRequest(UUID mealId) {
+public AddMealResponse(UUID mealId) {
     this.mealId = mealId;
 }
 
@@ -32,7 +32,7 @@ public void setMealId(UUID mealId) {
 public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    AddMealRequest that = (AddMealRequest) o;
+    AddMealResponse that = (AddMealResponse) o;
     return Objects.equals(mealId, that.mealId);
 }
 }

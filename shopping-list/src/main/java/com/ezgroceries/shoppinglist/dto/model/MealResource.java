@@ -1,42 +1,40 @@
-package com.ezgroceries.shoppinglist.dto;
+package com.ezgroceries.shoppinglist.dto.model;
 
 import java.util.Set;
 import java.util.UUID;
 
 
-public class CocktailResource {
-    private UUID cocktailId;
-    private String drinkId;
+public class MealResource {
+    private UUID mealId;
+    private String mealDbId;
     private String name;
-    private String glass;
     private String instructions;
     private String image;
     private Set<String> ingredients;
 
-    public CocktailResource(UUID cocktailId, String drinkId, String name, String glass, String instructions, String image, Set<String> ingredients) {
-        this.cocktailId = cocktailId;
-        this.drinkId = drinkId;
+    public MealResource(UUID mealId, String mealDbId, String name, String instructions, String image, Set<String> ingredients) {
+        this.mealId = mealId;
+        this.mealDbId = mealDbId;
         this.name = name;
-        this.glass = glass;
         this.instructions = instructions;
         this.image = image;
         this.ingredients = ingredients;
     }
 
-    public UUID getCocktailId() {
-        return cocktailId;
+    public UUID getMealId() {
+        return mealId;
     }
 
-    public void setCocktailId(UUID cocktailId) {
-        this.cocktailId = cocktailId;
+    public void setMealId(UUID mealId) {
+        this.mealId = mealId;
     }
 
-    public String getDrinkId() {
-        return drinkId;
+    public String getMealDbId() {
+        return mealDbId;
     }
 
-    public void setDrinkId(String drinkId) {
-        this.drinkId = drinkId;
+    public void setMealDbId(String mealDbId) {
+        this.mealDbId = mealDbId;
     }
 
     public String getName() {
@@ -45,14 +43,6 @@ public class CocktailResource {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getGlass() {
-        return glass;
-    }
-
-    public void setGlass(String glass) {
-        this.glass = glass;
     }
 
     public String getInstructions() {

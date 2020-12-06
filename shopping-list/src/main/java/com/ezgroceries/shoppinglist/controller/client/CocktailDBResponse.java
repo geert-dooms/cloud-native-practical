@@ -1,6 +1,6 @@
-package com.ezgroceries.shoppinglist.client;
+package com.ezgroceries.shoppinglist.controller.client;
 
-import com.ezgroceries.shoppinglist.dto.Drink;
+import com.ezgroceries.shoppinglist.dto.model.Drink;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.ezgroceries.shoppinglist.controller;
+package com.ezgroceries.shoppinglist.controller.api;
 
-import com.ezgroceries.shoppinglist.dto.MealResource;
+import com.ezgroceries.shoppinglist.dto.model.MealResource;
 import com.ezgroceries.shoppinglist.service.MealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.dto;
+package com.ezgroceries.shoppinglist.controller.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

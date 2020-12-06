@@ -1,13 +1,13 @@
-package com.ezgroceries.shoppinglist.converter;
+package com.ezgroceries.shoppinglist.dto.mapper;
 
-import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.dto.model.CocktailResource;
 import com.ezgroceries.shoppinglist.model.Cocktail;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CocktailMapper {
 
-    public static Cocktail DtoToEntity(CocktailResource cocktailResource) {
+    public Cocktail toCocktail(CocktailResource cocktailResource) {
         return new Cocktail(cocktailResource.getCocktailId(),
                             cocktailResource.getDrinkId(),
                             cocktailResource.getName(),
@@ -16,8 +16,9 @@ public class CocktailMapper {
                             cocktailResource.getInstructions(),
                             cocktailResource.getImage());
     }
+/*
 
-    public static CocktailResource EntitytoDto(Cocktail cocktail) {
+    public CocktailResource toCocktailResource(Cocktail cocktail) {
         return new CocktailResource(cocktail.getCocktailId(),
                                     cocktail.getDrinkId(),
                                     cocktail.getName(),
@@ -26,5 +27,6 @@ public class CocktailMapper {
                                     cocktail.getImage(),
                                     cocktail.getIngredients());
     }
+*/
 
 }

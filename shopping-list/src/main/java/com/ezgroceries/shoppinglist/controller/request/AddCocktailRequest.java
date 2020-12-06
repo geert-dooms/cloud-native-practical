@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.dto;
+package com.ezgroceries.shoppinglist.controller.request;
 
 import java.util.Objects;
 import java.util.UUID;

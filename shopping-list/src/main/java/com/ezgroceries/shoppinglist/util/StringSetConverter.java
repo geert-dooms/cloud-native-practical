@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.converter;
+package com.ezgroceries.shoppinglist.util;
 
 import org.springframework.util.CollectionUtils;
 

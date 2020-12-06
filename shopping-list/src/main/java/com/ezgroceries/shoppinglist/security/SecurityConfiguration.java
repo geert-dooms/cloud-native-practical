@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.config;
+package com.ezgroceries.shoppinglist.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

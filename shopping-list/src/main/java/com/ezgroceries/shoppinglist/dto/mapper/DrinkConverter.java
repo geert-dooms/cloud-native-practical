@@ -1,8 +1,8 @@
-package com.ezgroceries.shoppinglist.converter;
+package com.ezgroceries.shoppinglist.dto.mapper;
 
-import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.dto.model.CocktailResource;
 import com.ezgroceries.shoppinglist.model.Cocktail;
-import com.ezgroceries.shoppinglist.dto.Drink;
+import com.ezgroceries.shoppinglist.dto.model.Drink;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
