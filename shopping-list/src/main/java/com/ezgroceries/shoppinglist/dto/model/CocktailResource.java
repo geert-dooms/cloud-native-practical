@@ -1,54 +1,26 @@
-package com.ezgroceries.shoppinglist.model;
+package com.ezgroceries.shoppinglist.dto.model;
 
-import com.ezgroceries.shoppinglist.util.StringSetConverter;
-
-import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Table(name = "cocktail")
-public class Cocktail {
 
-    @Id
-    @Column(name = "id")
+public class CocktailResource {
     private UUID cocktailId;
-
-    @Column(name = "id_drink")
     private String drinkId;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "ingredients")
-    @Convert(converter = StringSetConverter.class)
+    private String glass;
+    private String instructions;
+    private String image;
     private Set<String> ingredients;
 
-    @Column(name = "glass")
-    private String glass;
-
-    @Column(name = "instructions")
-    private String instructions;
-
-    @Column(name = "image")
-    private String image;
-
-    @ManyToMany(mappedBy = "cocktails")
-    private Set<ShoppingList> shoppingLists = new HashSet<ShoppingList>();
-
-    public Cocktail() {
-
-    }
-
-    public Cocktail(UUID cocktailId, String drinkId, String name, Set<String> ingredients, String glass, String instructions, String image) {
+    public CocktailResource(UUID cocktailId, String drinkId, String name, String glass, String instructions, String image, Set<String> ingredients) {
         this.cocktailId = cocktailId;
         this.drinkId = drinkId;
         this.name = name;
-        this.ingredients = ingredients;
         this.glass = glass;
         this.instructions = instructions;
         this.image = image;
+        this.ingredients = ingredients;
     }
 
     public UUID getCocktailId() {

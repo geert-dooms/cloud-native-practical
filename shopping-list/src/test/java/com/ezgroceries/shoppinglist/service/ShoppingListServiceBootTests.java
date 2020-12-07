@@ -1,14 +1,15 @@
 package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.converter.ShoppingListMapper;
-import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
-import com.ezgroceries.shoppinglist.dto.AddMealRequest;
-import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
-import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.dto.mapper.ShoppingListMapper;
+import com.ezgroceries.shoppinglist.dto.model.ShoppingListResource;
+import com.ezgroceries.shoppinglist.dto.response.AddCocktailResponse;
+import com.ezgroceries.shoppinglist.dto.response.AddMealResponse;
 import com.ezgroceries.shoppinglist.model.Cocktail;
 import com.ezgroceries.shoppinglist.model.Meal;
 import com.ezgroceries.shoppinglist.model.ShoppingList;
 import com.ezgroceries.shoppinglist.repository.ShoppingListRepository;
+import com.ezgroceries.shoppinglist.controller.request.*;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@RequiredArgsConstructor
 public class ShoppingListServiceBootTests {
 
 
@@ -35,6 +37,8 @@ public class ShoppingListServiceBootTests {
 
     @Mock
     private MealService mealService;
+
+    private final ShoppingListMapper shoppingListMapper;
 
 
     @Test
@@ -57,8 +61,8 @@ public class ShoppingListServiceBootTests {
         //prepare shoppinglistresources
         List<ShoppingListResource> testShoppingListResources = new ArrayList<>();
 
-        testShoppingListResources.add(new ShoppingListResource(shoppingListId, "MisterG", new HashSet<>(Arrays.asList("Tequila"))));
-        testShoppingListResources.add(new ShoppingListResource(shoppingList2Id, "Jos", new HashSet<>(Arrays.asList("Vodka"))));
+        testShoppingListResources.add(new ShoppingListResource(shoppingListId, "MisterG","misterg" , new HashSet<>(Arrays.asList("Tequila"))));
+        testShoppingListResources.add(new ShoppingListResource(shoppingList2Id, "Jos", "misterg", new HashSet<>(Arrays.asList("Vodka"))));
 
 
         when(shoppingListRepository.findAll()).thenReturn(testShoppingLists);
@@ -82,7 +86,7 @@ public class ShoppingListServiceBootTests {
         testShoppingList.addCocktail(cocktail);
 
         //prepare shoppinglistresource
-        ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, "MisterG", new HashSet<>(Arrays.asList("Tequila")));
+        ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, "MisterG", "misterg", new HashSet<>(Arrays.asList("Tequila")));
 
         when(shoppingListRepository.findById(shoppingListId)).thenReturn(Optional.of(testShoppingList));
 
@@ -104,7 +108,7 @@ public class ShoppingListServiceBootTests {
         NewShoppingListRequest newShoppingListRequest = new NewShoppingListRequest("MisterG");
 
         UUID shoppingListId = UUID.randomUUID();
-        ShoppingList testShoppingList = ShoppingListMapper.DtoToEntity(newShoppingListRequest);
+        ShoppingList testShoppingList = shoppingListMapper.toShoppingList(newShoppingListRequest);
 
 
         ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, "MisterG");
@@ -145,16 +149,20 @@ public class ShoppingListServiceBootTests {
         testAddCocktailRequests.add(new AddCocktailRequest(cocktailId));
         testAddCocktailRequests.add(new AddCocktailRequest(cocktailId2));
 
+        List<AddCocktailResponse> testAddCocktailResponses = new ArrayList<>();
+        testAddCocktailResponses.add(new AddCocktailResponse(cocktailId));
+        testAddCocktailResponses.add(new AddCocktailResponse(cocktailId2));
+
         when(shoppingListRepository.findById(shoppingListId)).thenReturn(Optional.of(testShoppingList));
         when(cocktailService.findCocktailsById(testAddCocktailRequests)).thenReturn(testCocktails);
         when(shoppingListRepository.save(testShoppingList)).thenReturn(testShoppingList);
 
         //execute
-        List<AddCocktailRequest> addCocktailRequests = shoppingListService.addCocktails(shoppingListId, testAddCocktailRequests);
+        List<AddCocktailResponse> addCocktailResponses= shoppingListService.addCocktails(shoppingListId, testAddCocktailRequests);
 
         //assert
 
-        assertEquals(testAddCocktailRequests, addCocktailRequests);
+        assertEquals(testAddCocktailResponses, addCocktailResponses);
 
         verify(shoppingListRepository, times(1)).findById(shoppingListId);
         verify(cocktailService, times(1)).findCocktailsById(testAddCocktailRequests);
@@ -186,16 +194,20 @@ public class ShoppingListServiceBootTests {
         testAddMealRequests.add(new AddMealRequest(mealId));
         testAddMealRequests.add(new AddMealRequest(mealId2));
 
+        List<AddMealResponse> testAddMealResponses = new ArrayList<>();
+        testAddMealResponses.add(new AddMealResponse(mealId));
+        testAddMealResponses.add(new AddMealResponse(mealId2));
+
         when(shoppingListRepository.findById(shoppingListId)).thenReturn(Optional.of(testShoppingList));
         when(mealService.findMealsById(testAddMealRequests)).thenReturn(testMeals);
         when(shoppingListRepository.save(testShoppingList)).thenReturn(testShoppingList);
 
         //execute
-        List<AddMealRequest> addMealRequests = shoppingListService.addMeals(shoppingListId, testAddMealRequests);
+        List<AddMealResponse> addMealResponses = shoppingListService.addMeals(shoppingListId, testAddMealRequests);
 
         //assert
 
-        assertEquals(testAddMealRequests, addMealRequests);
+        assertEquals(testAddMealResponses, addMealResponses);
 
         verify(shoppingListRepository, times(1)).findById(shoppingListId);
         verify(mealService, times(1)).findMealsById(testAddMealRequests);

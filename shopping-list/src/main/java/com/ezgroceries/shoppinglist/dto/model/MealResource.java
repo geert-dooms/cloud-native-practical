@@ -1,50 +1,24 @@
-package com.ezgroceries.shoppinglist.model;
+package com.ezgroceries.shoppinglist.dto.model;
 
-import com.ezgroceries.shoppinglist.util.StringSetConverter;
-
-import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Table(name = "meal")
-public class Meal {
 
-    @Id
-    @Column(name = "id")
+public class MealResource {
     private UUID mealId;
-
-    @Column(name = "id_mealdb")
     private String mealDbId;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "ingredients")
-    @Convert(converter = StringSetConverter.class)
+    private String instructions;
+    private String image;
     private Set<String> ingredients;
 
-    @Column(name = "instructions")
-    private String instructions;
-
-    @Column(name = "image")
-    private String image;
-
-    @ManyToMany(mappedBy = "meals")
-    private Set<ShoppingList> shoppingLists = new HashSet<ShoppingList>();
-
-    public Meal() {
-
-    }
-
-    public Meal(UUID mealId, String mealDbId, String name, Set<String> ingredients, String instructions, String image) {
+    public MealResource(UUID mealId, String mealDbId, String name, String instructions, String image, Set<String> ingredients) {
         this.mealId = mealId;
         this.mealDbId = mealDbId;
         this.name = name;
-        this.ingredients = ingredients;
         this.instructions = instructions;
         this.image = image;
+        this.ingredients = ingredients;
     }
 
     public UUID getMealId() {
@@ -70,8 +44,6 @@ public class Meal {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     public String getInstructions() {
         return instructions;

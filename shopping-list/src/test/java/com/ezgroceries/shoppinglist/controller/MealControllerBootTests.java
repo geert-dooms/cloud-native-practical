@@ -1,10 +1,11 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.dto.MealResource;
+import com.ezgroceries.shoppinglist.controller.api.MealController;
+import com.ezgroceries.shoppinglist.dto.model.MealResource;
 import com.ezgroceries.shoppinglist.service.MealService;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(MealController.class)
+@AutoConfigureTestDatabase
 public class MealControllerBootTests {
 
     @Autowired

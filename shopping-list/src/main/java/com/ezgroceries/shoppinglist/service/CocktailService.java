@@ -1,13 +1,13 @@
 package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.client.CocktailDBClient;
-import com.ezgroceries.shoppinglist.converter.DrinkConverter;
-import com.ezgroceries.shoppinglist.converter.CocktailMapper;
-import com.ezgroceries.shoppinglist.client.CocktailDBResponse;
-import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
-import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.controller.client.CocktailDBClient;
+import com.ezgroceries.shoppinglist.dto.mapper.DrinkConverter;
+import com.ezgroceries.shoppinglist.dto.mapper.CocktailMapper;
+import com.ezgroceries.shoppinglist.controller.client.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.controller.request.*;
+import com.ezgroceries.shoppinglist.dto.model.CocktailResource;
 import com.ezgroceries.shoppinglist.model.Cocktail;
-import com.ezgroceries.shoppinglist.model.Drink;
+import com.ezgroceries.shoppinglist.dto.model.Drink;
 import com.ezgroceries.shoppinglist.repository.CocktailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ public class CocktailService {
     private final CocktailDBClient cocktailDBClient;
     private final DrinkConverter drinkConverter;
     private final CocktailRepository cocktailRepository;
+    private final CocktailMapper cocktailMapper;
 
     //todo > REFACTOR later on during hardening lab
     public List<CocktailResource> searchCocktails(String search) {
@@ -43,7 +44,7 @@ public class CocktailService {
                 cocktailResource.setCocktailId(cocktail.get().getCocktailId());
                 //todo > also update database with most recent details from thecocktaildb?
             } else {
-                cocktailRepository.save(CocktailMapper.DtoToEntity(cocktailResource));
+                cocktailRepository.save(cocktailMapper.toCocktail(cocktailResource));
             }
 
             cocktailResources.add(cocktailResource);

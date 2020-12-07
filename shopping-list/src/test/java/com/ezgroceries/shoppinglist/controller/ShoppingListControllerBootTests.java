@@ -1,13 +1,16 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.dto.AddCocktailRequest;
-import com.ezgroceries.shoppinglist.dto.AddMealRequest;
-import com.ezgroceries.shoppinglist.dto.NewShoppingListRequest;
-import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.controller.api.ShoppingListController;
+import com.ezgroceries.shoppinglist.dto.model.ShoppingListResource;
+import com.ezgroceries.shoppinglist.dto.response.AddCocktailResponse;
+import com.ezgroceries.shoppinglist.dto.response.AddMealResponse;
+import com.ezgroceries.shoppinglist.controller.request.*;
 import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -24,6 +27,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ShoppingListController.class)
+@AutoConfigureTestDatabase
+@AutoConfigureMockMvc(addFilters = false)
 public class ShoppingListControllerBootTests {
 
     @Autowired
@@ -38,7 +43,7 @@ public class ShoppingListControllerBootTests {
         //arrange
         UUID shoppingListId = UUID.randomUUID();
         Set<String> ingredients = new HashSet<>(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"));
-        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", ingredients);
+        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", "misterg", ingredients);
 
         given(shoppingListService.getShoppingList(any(UUID.class)))
                 .willReturn(testShoppingList);
@@ -63,7 +68,7 @@ public class ShoppingListControllerBootTests {
         //arrange
         UUID shoppingListId = UUID.randomUUID();
         Set<String> ingredients = new HashSet<>(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"));
-        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", ingredients);
+        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", "misterg", ingredients);
         List<ShoppingListResource> testShoppingLists = new ArrayList<>(Arrays.asList(testShoppingList));
 
         given(shoppingListService.getAllShoppingLists()).willReturn(testShoppingLists);
@@ -117,10 +122,12 @@ public class ShoppingListControllerBootTests {
 
         UUID cocktailId = UUID.randomUUID();
         AddCocktailRequest testAddCocktailRequest = new AddCocktailRequest(cocktailId);
+        AddCocktailResponse testAddCocktailResponse = new AddCocktailResponse(cocktailId);
         List<AddCocktailRequest> testAddCocktailRequests = Arrays.asList(testAddCocktailRequest);
+        List<AddCocktailResponse> testAddCocktailResponses = Arrays.asList(testAddCocktailResponse);
 
         given(shoppingListService.addCocktails(shoppingListId, testAddCocktailRequests))
-                .willReturn(testAddCocktailRequests);
+                .willReturn(testAddCocktailResponses);
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/{shoppingListId}/cocktails",shoppingListId)
@@ -129,10 +136,10 @@ public class ShoppingListControllerBootTests {
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$..cocktailId", hasItem(Arrays.asList(testAddCocktailRequest))));
+                .andExpect(jsonPath("$..cocktailId").exists());
 
         //verify
-        verify(shoppingListService, times(1)).addCocktails(any(UUID.class), testAddCocktailRequests);
+        verify(shoppingListService, times(1)).addCocktails(any(UUID.class), anyList());
 
     }
 
@@ -144,10 +151,12 @@ public class ShoppingListControllerBootTests {
 
         UUID mealId = UUID.randomUUID();
         AddMealRequest testAddMealRequest = new AddMealRequest(mealId);
+        AddMealResponse testAddMealResponse = new AddMealResponse(mealId);
         List<AddMealRequest> testAddMealRequests = Arrays.asList(testAddMealRequest);
+        List<AddMealResponse> testAddMealResponses = Arrays.asList(testAddMealResponse);
 
-        given(shoppingListService.addMeals(any(UUID.class), testAddMealRequests))
-                .willReturn(testAddMealRequests);
+        given(shoppingListService.addMeals(shoppingListId, testAddMealRequests))
+                .willReturn(testAddMealResponses);
 
         //act and assert
         mockMvc.perform(post("/shopping-lists/{shoppingListId}/meals",shoppingListId)
@@ -156,10 +165,10 @@ public class ShoppingListControllerBootTests {
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$..mealId", hasItem(Arrays.asList(testAddMealRequest))));
+                .andExpect(jsonPath("$..mealId").exists());
 
         //verify
-        verify(shoppingListService, times(1)).addMeals(any(UUID.class), testAddMealRequests);
+        verify(shoppingListService, times(1)).addMeals(any(UUID.class), anyList());
 
     }
     protected static String asJsonString(final Object obj) {

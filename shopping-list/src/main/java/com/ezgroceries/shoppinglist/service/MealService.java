@@ -1,13 +1,13 @@
 package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.client.MealDBClient;
-import com.ezgroceries.shoppinglist.converter.MealDbConverter;
-import com.ezgroceries.shoppinglist.converter.MealMapper;
-import com.ezgroceries.shoppinglist.client.MealDBResponse;
-import com.ezgroceries.shoppinglist.dto.AddMealRequest;
-import com.ezgroceries.shoppinglist.dto.MealResource;
+import com.ezgroceries.shoppinglist.controller.client.MealDBClient;
+import com.ezgroceries.shoppinglist.dto.mapper.MealDbConverter;
+import com.ezgroceries.shoppinglist.dto.mapper.MealMapper;
+import com.ezgroceries.shoppinglist.controller.client.MealDBResponse;
+import com.ezgroceries.shoppinglist.controller.request.*;
+import com.ezgroceries.shoppinglist.dto.model.MealResource;
 import com.ezgroceries.shoppinglist.model.Meal;
-import com.ezgroceries.shoppinglist.model.MealDb;
+import com.ezgroceries.shoppinglist.dto.model.MealDb;
 import com.ezgroceries.shoppinglist.repository.MealRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,7 @@ public class MealService {
     private final MealDBClient mealDBClient;
     private final MealDbConverter mealDbConverter;
     private final MealRepository mealRepository;
+    private final MealMapper mealMapper;
 
     //todo > REFACTOR later on during hardening lab
     public List<MealResource> searchMeals(String search) {
@@ -43,7 +44,7 @@ public class MealService {
                 mealResource.setMealId(meal.get().getMealId());
                 //todo > also update database with most recent details from themealdb?
             } else {
-                mealRepository.save(MealMapper.DtoToEntity(mealResource));
+                mealRepository.save(mealMapper.toMeal(mealResource));
             }
 
             mealResources.add(mealResource);
