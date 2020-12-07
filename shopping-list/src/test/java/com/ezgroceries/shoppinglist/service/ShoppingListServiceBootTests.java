@@ -61,8 +61,8 @@ public class ShoppingListServiceBootTests {
         //prepare shoppinglistresources
         List<ShoppingListResource> testShoppingListResources = new ArrayList<>();
 
-        testShoppingListResources.add(new ShoppingListResource(shoppingListId, "MisterG", new HashSet<>(Arrays.asList("Tequila"))));
-        testShoppingListResources.add(new ShoppingListResource(shoppingList2Id, "Jos", new HashSet<>(Arrays.asList("Vodka"))));
+        testShoppingListResources.add(new ShoppingListResource(shoppingListId, "MisterG","misterg" , new HashSet<>(Arrays.asList("Tequila"))));
+        testShoppingListResources.add(new ShoppingListResource(shoppingList2Id, "Jos", "misterg", new HashSet<>(Arrays.asList("Vodka"))));
 
 
         when(shoppingListRepository.findAll()).thenReturn(testShoppingLists);
@@ -86,7 +86,7 @@ public class ShoppingListServiceBootTests {
         testShoppingList.addCocktail(cocktail);
 
         //prepare shoppinglistresource
-        ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, "MisterG", new HashSet<>(Arrays.asList("Tequila")));
+        ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, "MisterG", "misterg", new HashSet<>(Arrays.asList("Tequila")));
 
         when(shoppingListRepository.findById(shoppingListId)).thenReturn(Optional.of(testShoppingList));
 

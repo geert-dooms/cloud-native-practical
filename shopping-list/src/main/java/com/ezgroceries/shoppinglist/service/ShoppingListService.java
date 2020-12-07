@@ -10,6 +10,8 @@ import com.ezgroceries.shoppinglist.controller.request.NewShoppingListRequest;
 import com.ezgroceries.shoppinglist.controller.request.AddCocktailRequest;
 import com.ezgroceries.shoppinglist.controller.request.AddMealRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,20 +33,16 @@ public class ShoppingListService { //todo > use interface instead?
         return shoppingListMapper.toShoppingListResource(shoppingList);
     }
 
+    @PostFilter("filterObject.username == authentication.name")
     public List<ShoppingListResource> getAllShoppingLists() {
         List<ShoppingListResource> shoppingListResources = new ArrayList<>();
-        shoppingListRepository.findAll().forEach(shoppingList -> shoppingListResources.add(shoppingListMapper.toShoppingListResource(shoppingList)));
+        findAllShoppingLists().forEach(shoppingList -> shoppingListResources.add(shoppingListMapper.toShoppingListResource(shoppingList)));
         return shoppingListResources;
     }
 
-
+    @PostAuthorize("returnObject.username == authentication.name")
     public ShoppingListResource getShoppingList(UUID shoppingListId) {
-        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
-        if (shoppingList.isPresent()) {
-            return shoppingListMapper.toShoppingListResource(shoppingList.get());
-        } else {
-            return null; //todo refactor (exception?)
-        }
+        return shoppingListMapper.toShoppingListResource(findOneShoppingList(shoppingListId));
     }
 
     public List<AddCocktailResponse> addCocktails(UUID shoppingListId, List<AddCocktailRequest> addCocktailRequests) {
@@ -75,5 +73,16 @@ public class ShoppingListService { //todo > use interface instead?
             shoppingListRepository.save(shoppingList.get());
         }
         return addMealResponses;
+    }
+
+
+    public ShoppingList findOneShoppingList(UUID shoppingListId) {
+        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(shoppingListId);
+
+        return shoppingList.orElseThrow();
+    }
+
+    public Iterable<ShoppingList> findAllShoppingLists() {
+        return shoppingListRepository.findAll();
     }
 }

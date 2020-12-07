@@ -32,6 +32,7 @@ public class ShoppingListMapper {
 
         return new ShoppingListResource(shoppingList.getShoppingListId(),
                                         shoppingList.getName(),
+                                        shoppingList.getUsername(),
                                         ingredients);
     }
 }

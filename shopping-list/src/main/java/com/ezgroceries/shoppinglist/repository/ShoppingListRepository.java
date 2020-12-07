@@ -8,9 +8,4 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ShoppingListRepository extends CrudRepository<ShoppingList, UUID> {
-
-    @PostAuthorize("returnObject.username == principal.username")
-    Optional<ShoppingList> findById(UUID uuid);
-
-    Iterable<ShoppingList> findAll();
 }

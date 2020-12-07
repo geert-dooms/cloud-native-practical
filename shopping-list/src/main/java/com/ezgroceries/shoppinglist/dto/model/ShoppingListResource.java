@@ -6,6 +6,8 @@ public class ShoppingListResource {
 
     private UUID shoppingListId;
     private String name;
+    private String username;
+
     private Set<String> ingredients; //todo -> best place to include ingredients to the outside world?
 
     public ShoppingListResource(UUID shoppingListId, String name) {
@@ -14,9 +16,10 @@ public class ShoppingListResource {
         this.ingredients = new HashSet<>();
     }
 
-    public ShoppingListResource(UUID shoppingListId, String name, Set<String> ingredients) {
+    public ShoppingListResource(UUID shoppingListId, String name, String username, Set<String> ingredients) {
         this.shoppingListId = shoppingListId;
         this.name = name;
+        this.username = username;
         this.ingredients = ingredients;
     }
 
@@ -34,6 +37,14 @@ public class ShoppingListResource {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Set<String> getIngredients() {

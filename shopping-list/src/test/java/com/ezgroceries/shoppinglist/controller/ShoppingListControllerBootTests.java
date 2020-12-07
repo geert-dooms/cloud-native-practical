@@ -43,7 +43,7 @@ public class ShoppingListControllerBootTests {
         //arrange
         UUID shoppingListId = UUID.randomUUID();
         Set<String> ingredients = new HashSet<>(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"));
-        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", ingredients);
+        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", "misterg", ingredients);
 
         given(shoppingListService.getShoppingList(any(UUID.class)))
                 .willReturn(testShoppingList);
@@ -68,7 +68,7 @@ public class ShoppingListControllerBootTests {
         //arrange
         UUID shoppingListId = UUID.randomUUID();
         Set<String> ingredients = new HashSet<>(Arrays.asList("Salt", "Lime Juice", "Tequila", "Triple Sec"));
-        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", ingredients);
+        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, "MisterG", "misterg", ingredients);
         List<ShoppingListResource> testShoppingLists = new ArrayList<>(Arrays.asList(testShoppingList));
 
         given(shoppingListService.getAllShoppingLists()).willReturn(testShoppingLists);
