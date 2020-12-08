@@ -1,8 +1,8 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.controller.api.CocktailController;
-import com.ezgroceries.shoppinglist.dto.model.CocktailResource;
-import com.ezgroceries.shoppinglist.service.CocktailService;
+import com.ezgroceries.shoppinglist.cocktail.web.in.CocktailController;
+import com.ezgroceries.shoppinglist.cocktail.service.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.cocktail.service.CocktailService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -49,7 +49,6 @@ public class CocktailControllerBootTests {
 
         given(cocktailService.searchCocktails(anyString())).willReturn(testCocktailResources);
 
-        //todo > best way to do this?
         //act and assert
         mockMvc.perform(get("/cocktails")
                 .param("search", search))
@@ -60,8 +59,8 @@ public class CocktailControllerBootTests {
                 .andExpect(jsonPath("$..name").value("Margarita"))
                 .andExpect(jsonPath("$..glass").value("Cocktail glass"))
                 .andExpect(jsonPath("$..instructions").value("Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten.."))
-                .andExpect(jsonPath("$..image").value("https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg"));
-        //        .andExpect(jsonPath("$..ingredients").value(anySet()));
+                .andExpect(jsonPath("$..image").value("https://www.thecocktaildb.com/images/media/drink/wpxpvu1439905379.jpg"))
+                .andExpect(jsonPath("$..ingredients").exists());
         //todo > match op set werkt niet (met value) - of gaat dit wel met .equals?
 
         //verify

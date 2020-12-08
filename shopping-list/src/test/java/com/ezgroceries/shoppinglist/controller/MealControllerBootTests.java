@@ -1,8 +1,8 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.controller.api.MealController;
-import com.ezgroceries.shoppinglist.dto.model.MealResource;
-import com.ezgroceries.shoppinglist.service.MealService;
+import com.ezgroceries.shoppinglist.meal.web.in.MealController;
+import com.ezgroceries.shoppinglist.meal.service.dto.MealResource;
+import com.ezgroceries.shoppinglist.meal.service.MealService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -47,7 +47,6 @@ public class MealControllerBootTests {
 
         given(mealService.searchMeals(anyString())).willReturn(testMealResources);
 
-        //todo > best way to do this?
         //act and assert
         mockMvc.perform(get("/meals")
                 .param("search", search))
@@ -57,8 +56,8 @@ public class MealControllerBootTests {
                 .andExpect(jsonPath("$..mealId").value(mealId.toString()))
                 .andExpect(jsonPath("$..name").value("Poutine"))
                 .andExpect(jsonPath("$..instructions").value("Cook"))
-                .andExpect(jsonPath("$..image").value("https://www.themealdb.com/images/media/drink/wpxpvu1439905379.jpg"));
-        //        .andExpect(jsonPath("$..ingredients", hasItem(ingredients)));
+                .andExpect(jsonPath("$..image").value("https://www.themealdb.com/images/media/drink/wpxpvu1439905379.jpg"))
+                .andExpect(jsonPath("$..ingredients").exists());
 
         //verify
         verify(mealService, times(1)).searchMeals(anyString());
