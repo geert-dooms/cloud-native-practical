@@ -1,19 +1,25 @@
 package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.dto.mapper.ShoppingListMapper;
-import com.ezgroceries.shoppinglist.dto.model.ShoppingListResource;
-import com.ezgroceries.shoppinglist.dto.response.AddCocktailResponse;
-import com.ezgroceries.shoppinglist.dto.response.AddMealResponse;
-import com.ezgroceries.shoppinglist.model.Cocktail;
-import com.ezgroceries.shoppinglist.model.Meal;
-import com.ezgroceries.shoppinglist.model.ShoppingList;
-import com.ezgroceries.shoppinglist.repository.ShoppingListRepository;
-import com.ezgroceries.shoppinglist.controller.request.*;
+import com.ezgroceries.shoppinglist.cocktail.service.CocktailService;
+import com.ezgroceries.shoppinglist.shoppinglist.service.ShoppingListMapper;
+import com.ezgroceries.shoppinglist.shoppinglist.service.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.cocktail.web.in.dto.AddCocktailResponse;
+import com.ezgroceries.shoppinglist.meal.web.in.dto.AddMealResponse;
+import com.ezgroceries.shoppinglist.cocktail.model.Cocktail;
+import com.ezgroceries.shoppinglist.meal.model.Meal;
+import com.ezgroceries.shoppinglist.meal.service.MealService;
+import com.ezgroceries.shoppinglist.shoppinglist.model.ShoppingList;
+import com.ezgroceries.shoppinglist.shoppinglist.model.repository.ShoppingListRepository;
+import com.ezgroceries.shoppinglist.shoppinglist.service.ShoppingListService;
+import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddMealRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.NewShoppingListRequest;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
@@ -38,6 +44,7 @@ public class ShoppingListServiceBootTests {
     @Mock
     private MealService mealService;
 
+
     private final ShoppingListMapper shoppingListMapper;
 
 
@@ -47,13 +54,13 @@ public class ShoppingListServiceBootTests {
         List<ShoppingList> testShoppingLists = new ArrayList<>();
 
         UUID shoppingListId = UUID.randomUUID();
-        ShoppingList shoppingList = new ShoppingList(shoppingListId, "MisterG");
+        ShoppingList shoppingList = new ShoppingList(shoppingListId, "MisterG", "MisterG");
         Cocktail cocktail = new Cocktail(UUID.randomUUID(), "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")), "coupe", "shaken not stirred","image.jpg" );
         shoppingList.addCocktail(cocktail);
         testShoppingLists.add(shoppingList);
 
         UUID shoppingList2Id = UUID.randomUUID();
-        ShoppingList shoppingList2 = new ShoppingList(shoppingList2Id, "Jos");
+        ShoppingList shoppingList2 = new ShoppingList(shoppingList2Id, "Jos", "MisterG");
         Cocktail cocktail2 = new Cocktail(UUID.randomUUID(), "654321", "White Russian", new HashSet<>(Arrays.asList("Vodka")),"tumbler" ,"creamy" ,"dude.jpg" );
         shoppingList2.addCocktail(cocktail2);
         testShoppingLists.add(shoppingList2);
@@ -81,7 +88,7 @@ public class ShoppingListServiceBootTests {
         //prepare shoppinglist
 
         UUID shoppingListId = UUID.randomUUID();
-        ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG");
+        ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG", "MisterG");
         Cocktail cocktail = new Cocktail(UUID.randomUUID(), "123456", "Margarita", new HashSet<>(Arrays.asList("Tequila")),"coupe", "shaken not stirred","image.jpg");
         testShoppingList.addCocktail(cocktail);
 
@@ -108,7 +115,7 @@ public class ShoppingListServiceBootTests {
         NewShoppingListRequest newShoppingListRequest = new NewShoppingListRequest("MisterG");
 
         UUID shoppingListId = UUID.randomUUID();
-        ShoppingList testShoppingList = shoppingListMapper.toShoppingList(newShoppingListRequest);
+        ShoppingList testShoppingList = shoppingListMapper.toShoppingList(newShoppingListRequest, "MisterG");
 
 
         ShoppingListResource testShoppingListResource = new ShoppingListResource(shoppingListId, "MisterG");
@@ -116,7 +123,7 @@ public class ShoppingListServiceBootTests {
         when(shoppingListRepository.save(testShoppingList)).thenReturn(testShoppingList);
 
         //execute
-        ShoppingListResource shoppingListResource = shoppingListService.create(newShoppingListRequest);
+        ShoppingListResource shoppingListResource = shoppingListService.create(newShoppingListRequest,"MisterG");
 
         //verify
         //todo only testing on name because service will random generate uuid upon creation > other way?
@@ -140,7 +147,7 @@ public class ShoppingListServiceBootTests {
         testCocktails.add(cocktail2);
 
         UUID shoppingListId = UUID.randomUUID();
-        ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG");
+        ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG", "MisterG");
         testShoppingList.addCocktail(cocktail);
         testShoppingList.addCocktail(cocktail2);
 
@@ -185,7 +192,7 @@ public class ShoppingListServiceBootTests {
         testMeals.add(meal2);
 
         UUID shoppingListId = UUID.randomUUID();
-        ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG");
+        ShoppingList testShoppingList = new ShoppingList(shoppingListId, "MisterG", "MisterG");
         testShoppingList.addMeal(meal);
         testShoppingList.addMeal(meal2);
 
