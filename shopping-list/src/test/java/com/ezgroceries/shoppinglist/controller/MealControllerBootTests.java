@@ -1,7 +1,7 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.meal.web.in.MealController;
-import com.ezgroceries.shoppinglist.meal.service.dto.MealResource;
+import com.ezgroceries.shoppinglist.meal.controller.MealController;
+import com.ezgroceries.shoppinglist.meal.controller.dto.MealResource;
 import com.ezgroceries.shoppinglist.meal.service.MealService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

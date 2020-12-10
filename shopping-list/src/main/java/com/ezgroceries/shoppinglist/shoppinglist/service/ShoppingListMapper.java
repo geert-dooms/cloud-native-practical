@@ -1,8 +1,8 @@
 package com.ezgroceries.shoppinglist.shoppinglist.service;
 
 import com.ezgroceries.shoppinglist.shoppinglist.model.ShoppingList;
-import com.ezgroceries.shoppinglist.shoppinglist.service.dto.ShoppingListResource;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.NewShoppingListRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.NewShoppingListRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

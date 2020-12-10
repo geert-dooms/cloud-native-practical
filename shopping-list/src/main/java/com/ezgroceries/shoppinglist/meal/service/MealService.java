@@ -1,13 +1,13 @@
 package com.ezgroceries.shoppinglist.meal.service;
 
-import com.ezgroceries.shoppinglist.meal.service.dto.MealResource;
-import com.ezgroceries.shoppinglist.meal.web.out.MealDBClient;
-import com.ezgroceries.shoppinglist.meal.web.out.MealDbConverter;
-import com.ezgroceries.shoppinglist.meal.web.out.dto.MealDBResponse;
+import com.ezgroceries.shoppinglist.meal.controller.dto.MealResource;
+import com.ezgroceries.shoppinglist.meal.external.MealDBClient;
+import com.ezgroceries.shoppinglist.meal.external.MealDbConverter;
+import com.ezgroceries.shoppinglist.meal.external.dto.MealDBResponse;
 import com.ezgroceries.shoppinglist.meal.model.Meal;
-import com.ezgroceries.shoppinglist.meal.web.out.dto.MealDBResource;
-import com.ezgroceries.shoppinglist.meal.model.repository.MealRepository;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddMealRequest;
+import com.ezgroceries.shoppinglist.meal.external.dto.MealDBResource;
+import com.ezgroceries.shoppinglist.meal.repository.MealRepository;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.AddMealRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
