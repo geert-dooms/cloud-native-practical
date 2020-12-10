@@ -1,7 +1,7 @@
 package com.ezgroceries.shoppinglist.cocktail.service;
 
 import com.ezgroceries.shoppinglist.cocktail.model.Cocktail;
-import com.ezgroceries.shoppinglist.cocktail.service.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.cocktail.controller.dto.CocktailResource;
 import org.springframework.stereotype.Component;
 
 @Component

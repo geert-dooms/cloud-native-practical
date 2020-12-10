@@ -1,7 +1,7 @@
 package com.ezgroceries.shoppinglist.meal.service;
 
 import com.ezgroceries.shoppinglist.meal.model.Meal;
-import com.ezgroceries.shoppinglist.meal.service.dto.MealResource;
+import com.ezgroceries.shoppinglist.meal.controller.dto.MealResource;
 import org.springframework.stereotype.Component;
 
 @Component

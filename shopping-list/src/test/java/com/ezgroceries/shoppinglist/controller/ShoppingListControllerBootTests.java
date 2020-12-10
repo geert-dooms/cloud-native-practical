@@ -1,12 +1,12 @@
 package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddCocktailRequest;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddMealRequest;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.NewShoppingListRequest;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.ShoppingListController;
-import com.ezgroceries.shoppinglist.shoppinglist.service.dto.ShoppingListResource;
-import com.ezgroceries.shoppinglist.cocktail.web.in.dto.AddCocktailResponse;
-import com.ezgroceries.shoppinglist.meal.web.in.dto.AddMealResponse;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.AddMealRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.NewShoppingListRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.ShoppingListController;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.cocktail.controller.dto.AddCocktailResponse;
+import com.ezgroceries.shoppinglist.meal.controller.dto.AddMealResponse;
 import com.ezgroceries.shoppinglist.shoppinglist.service.ShoppingListService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Disabled;

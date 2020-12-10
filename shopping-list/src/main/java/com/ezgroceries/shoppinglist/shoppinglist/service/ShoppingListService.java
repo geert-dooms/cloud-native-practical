@@ -1,13 +1,13 @@
 package com.ezgroceries.shoppinglist.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.cocktail.web.in.dto.AddCocktailResponse;
-import com.ezgroceries.shoppinglist.meal.web.in.dto.AddMealResponse;
+import com.ezgroceries.shoppinglist.cocktail.controller.dto.AddCocktailResponse;
+import com.ezgroceries.shoppinglist.meal.controller.dto.AddMealResponse;
 import com.ezgroceries.shoppinglist.shoppinglist.model.ShoppingList;
-import com.ezgroceries.shoppinglist.shoppinglist.model.repository.ShoppingListRepository;
-import com.ezgroceries.shoppinglist.shoppinglist.service.dto.ShoppingListResource;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.NewShoppingListRequest;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddCocktailRequest;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddMealRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.repository.ShoppingListRepository;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.NewShoppingListRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.AddMealRequest;
 import com.ezgroceries.shoppinglist.cocktail.service.CocktailService;
 import com.ezgroceries.shoppinglist.meal.service.MealService;
 import lombok.RequiredArgsConstructor;

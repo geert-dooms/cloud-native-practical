@@ -1,13 +1,13 @@
 package com.ezgroceries.shoppinglist.cocktail.service;
 
-import com.ezgroceries.shoppinglist.cocktail.service.dto.CocktailResource;
-import com.ezgroceries.shoppinglist.cocktail.web.out.CocktailDBClient;
-import com.ezgroceries.shoppinglist.cocktail.web.out.DrinkConverter;
-import com.ezgroceries.shoppinglist.cocktail.web.out.dto.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.cocktail.controller.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.cocktail.external.CocktailDBClient;
+import com.ezgroceries.shoppinglist.cocktail.external.DrinkConverter;
+import com.ezgroceries.shoppinglist.cocktail.external.dto.CocktailDBResponse;
 import com.ezgroceries.shoppinglist.cocktail.model.Cocktail;
-import com.ezgroceries.shoppinglist.cocktail.web.out.dto.DrinkResource;
-import com.ezgroceries.shoppinglist.cocktail.model.repository.CocktailRepository;
-import com.ezgroceries.shoppinglist.shoppinglist.web.in.dto.AddCocktailRequest;
+import com.ezgroceries.shoppinglist.cocktail.external.dto.DrinkResource;
+import com.ezgroceries.shoppinglist.cocktail.repository.CocktailRepository;
+import com.ezgroceries.shoppinglist.shoppinglist.controller.dto.AddCocktailRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
